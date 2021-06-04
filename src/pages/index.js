@@ -1,11 +1,12 @@
 import Banner from '@components/Banner';
-import { Feature } from '@components/Sections';
+import { Category, Feature } from '@components/Sections';
 
 const HomeScreen = () => {
   return (
     <div>
       <Banner />
       <Feature />
+      <Category />
     </div>
   );
 };

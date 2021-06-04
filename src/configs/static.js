@@ -6,12 +6,42 @@ module.exports = {
     { name: 'Contact Us', url: '/contact' },
   ],
   categories: [
-    { name: 'Bedroom', icon: '/images/icons/bed.svg', url: '/bedroom' },
-    { name: 'Sofa', icon: '/images/icons/sofa.svg', url: '/sofa' },
-    { name: 'Office', icon: '/images/icons/office.svg', url: '/office' },
-    { name: 'Outdoor', icon: '/images/icons/terrace.svg', url: '/outdoor' },
-    { name: 'Mattress', icon: '/images/icons/bed-2.svg', url: '/mattress' },
-    { name: 'Dining', icon: '/images/icons/restaurant.svg', url: '/dining' },
+    {
+      name: 'Bedroom',
+      icon: '/images/icons/bed.svg',
+      image: '/images/category/category-1.jpg',
+      url: '/bedroom',
+    },
+    {
+      name: 'Sofa',
+      icon: '/images/icons/sofa.svg',
+      image: '/images/category/category-2.jpg',
+      url: '/sofa',
+    },
+    {
+      name: 'Office',
+      icon: '/images/icons/office.svg',
+      image: '/images/category/category-3.jpg',
+      url: '/office',
+    },
+    {
+      name: 'Outdoor',
+      icon: '/images/icons/terrace.svg',
+      image: '/images/category/category-4.jpg',
+      url: '/outdoor',
+    },
+    {
+      name: 'Mattress',
+      icon: '/images/icons/bed-2.svg',
+      image: '/images/category/category-5.jpg',
+      url: '/mattress',
+    },
+    {
+      name: 'Dining',
+      icon: '/images/icons/restaurant.svg',
+      image: '/images/category/category-6.jpg',
+      url: '/dining',
+    },
   ],
   features: [
     {

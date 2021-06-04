@@ -6,7 +6,9 @@ const TopBar = () => {
       {/* logo */}
       <div className='container flex items-center justify-between'>
         <Link href='/'>
-          <img src='/images/logo.svg' alt='' className='w-32' />
+          <a>
+            <img src='/images/logo.svg' alt='' className='w-32' />
+          </a>
         </Link>
         <div className='w-full max-w-xl relative flex items-center'>
           <span className='absolute top-3 left-4 text-base text-gray-400'>
