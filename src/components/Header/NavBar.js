@@ -3,7 +3,7 @@ import { navLinks, categories } from '@configs/static';
 
 const NavBar = () => {
   return (
-    <nav className='bg-gray-800'>
+    <nav className='bg-gray-800 sticky top-[0] z-10 w-full'>
       <div className='container flex items-center'>
         {/* all categories */}
         <div className='px-8 py-4 flex items-center bg-primary text-white cursor-pointer relative group'>
