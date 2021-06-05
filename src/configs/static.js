@@ -8,40 +8,52 @@ module.exports = {
   categories: [
     {
       name: 'Bedroom',
+      items: '15',
       icon: '/images/icons/bed.svg',
       image: '/images/category/category-1.jpg',
       url: '/bedroom',
     },
     {
       name: 'Sofa',
+      items: '15',
       icon: '/images/icons/sofa.svg',
       image: '/images/category/category-2.jpg',
       url: '/sofa',
     },
     {
       name: 'Office',
+      items: '15',
       icon: '/images/icons/office.svg',
       image: '/images/category/category-3.jpg',
       url: '/office',
     },
     {
       name: 'Outdoor',
+      items: '15',
       icon: '/images/icons/terrace.svg',
       image: '/images/category/category-4.jpg',
       url: '/outdoor',
     },
     {
       name: 'Mattress',
+      items: '15',
       icon: '/images/icons/bed-2.svg',
       image: '/images/category/category-5.jpg',
       url: '/mattress',
     },
     {
       name: 'Dining',
+      items: '15',
       icon: '/images/icons/restaurant.svg',
       image: '/images/category/category-6.jpg',
       url: '/dining',
     },
+  ],
+  brands: [
+    { name: 'Dominik', items: '15' },
+    { name: 'Karl', items: '18' },
+    { name: 'Maxing', items: '09' },
+    { name: 'Ernest', items: '05' },
   ],
   features: [
     {
