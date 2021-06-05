@@ -60,4 +60,38 @@ module.exports = {
       icon: '/images/icons/service-hours.svg',
     },
   ],
+  products: [
+    {
+      title: 'Guyer Chair',
+      image: '/images/products/product1.jpg',
+      price: '45.00',
+      lessPrice: '55.00',
+      reviews: [0, 1, 2, 3],
+      review: 5,
+    },
+    {
+      title: 'Guyer Chair',
+      image: '/images/products/product1.jpg',
+      price: '45.00',
+      lessPrice: '55.00',
+      reviews: [0, 1, 2, 3],
+      review: 5,
+    },
+    {
+      title: 'Guyer Chair',
+      image: '/images/products/product1.jpg',
+      price: '45.00',
+      lessPrice: '55.00',
+      reviews: [0, 1, 2, 3],
+      review: 5,
+    },
+    {
+      title: 'Guyer Chair',
+      image: '/images/products/product1.jpg',
+      price: '45.00',
+      lessPrice: '55.00',
+      reviews: [0, 1, 2, 3],
+      review: 5,
+    },
+  ],
 };

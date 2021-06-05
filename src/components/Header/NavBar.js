@@ -3,7 +3,7 @@ import { navLinks, categories } from '@configs/static';
 
 const NavBar = () => {
   return (
-    <nav className='bg-gray-800 sticky top-[0] z-10 w-full'>
+    <nav className='bg-gray-800'>
       <div className='container flex items-center'>
         {/* all categories */}
         <div className='px-8 py-4 flex items-center bg-primary text-white cursor-pointer relative group'>
@@ -25,7 +25,7 @@ const NavBar = () => {
           <span className='capitalize ml-2'>All Categories</span>
           <div className='absolute top-full divide-y left-0 w-full py-3 bg-white shadow-md opacity-0 group-hover:opacity-100 transition duration-500 invisible group-hover:visible'>
             {categories.map((category, index) => (
-              <Link href={category.url}>
+              <Link key={index} href={category.url}>
                 <a className='flex items-center px-6 py-3 transition hover:bg-gray-100'>
                   <img
                     src={category.icon}

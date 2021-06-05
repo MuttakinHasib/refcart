@@ -1,14 +1,24 @@
 import Banner from '@components/Banner';
-import { Category, Feature } from '@components/Sections';
+import { Category, Feature, ProductWrapper } from '@components/Sections';
 
-const HomeScreen = () => {
+const HomeScreen = ({ products }) => {
   return (
-    <div>
+    <>
       <Banner />
       <Feature />
       <Category />
-    </div>
+      <ProductWrapper {...{ products }} />
+    </>
   );
 };
+export const getServerSideProps = async () => {
+  const res = await fetch('http://localhost:1337/products');
+  const products = await res.json();
 
+  return {
+    props: {
+      products
+    },
+  };
+};
 export default HomeScreen;
