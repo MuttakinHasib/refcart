@@ -5,7 +5,7 @@ const ProductItem = ({ product }) => {
     <div className='bg-white shadow rounded overflow-hidden group'>
       <div className='relative'>
         <img
-          src={product.image.formats.thumbnail.url}
+          src={product?.image?.formats?.thumbnail?.url || product.image}
           alt=''
           className='w-full'
         />

@@ -1,7 +1,7 @@
 import ProductItem from '@components/ProductItem';
-// import { products } from '@configs/static';
+import { products } from '@configs/static';
 
-const ProductWrapper = ({ products }) => {
+const ProductWrapper = () => {
   return (
     <section className='container py-16'>
       <h2 className='text-3xl text-gray-800 font-medium mb-6 uppercase'>

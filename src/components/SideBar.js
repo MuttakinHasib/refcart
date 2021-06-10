@@ -36,15 +36,15 @@ const SideBar = () => {
           </h2>
           <div className='space-y-2'>
             {brands.map((brand, index) => (
-              <div key={index} className='flex items-center'>
+              <div key={index + 'brand'} className='flex items-center'>
                 <input
                   className='text-primary focus:ring-0 focus:outline-none rounded-sm cursor-pointer'
                   type='checkbox'
                   name={brand.name}
-                  id={index}
+                  id={index + 'brand'}
                 />
                 <label
-                  htmlFor={index}
+                  htmlFor={index + 'brand'}
                   className='text-gray-600 ml-3 cursor-pointer'
                 >
                   {brand.name}
@@ -54,6 +54,119 @@ const SideBar = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+        <div className='pt-4'>
+          <h2 className='text-xl text-gray-800 mb-3 uppercase font-medium'>
+            Price
+          </h2>
+          <div className='mt-4 flex items-center'>
+            <input
+              type='text'
+              className='w-full border-gray-300 focus:ring-0 px-3 py-1 text-gray-600 text-sm shadow-sm rounded-md'
+              placeholder='Min'
+            />
+            <span className='mx-4'>+</span>
+            <input
+              type='text'
+              className='w-full border-gray-300 focus:ring-0 px-3 py-1 text-gray-600 text-sm shadow-sm rounded-md'
+              placeholder='Max'
+            />
+          </div>
+        </div>
+        <div className='pt-4'>
+          <h2 className='text-xl text-gray-800 mb-3 uppercase font-medium'>
+            Size
+          </h2>
+          <div className='flex items-center gap-2'>
+            <div className='size-selector'>
+              <input type='radio' name='size' id='size-xs' className='hidden' />
+              <label
+                htmlFor='size-xs'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
+              >
+                XS
+              </label>
+            </div>
+            <div className='size-selector'>
+              <input type='radio' name='size' id='size-sm' className='hidden' />
+              <label
+                htmlFor='size-sm'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
+              >
+                S
+              </label>
+            </div>
+            <div className='size-selector'>
+              <input type='radio' name='size' id='size-m' className='hidden' />
+              <label
+                htmlFor='size-m'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
+              >
+                M
+              </label>
+            </div>
+            <div className='size-selector'>
+              <input type='radio' name='size' id='size-l' className='hidden' />
+              <label
+                htmlFor='size-l'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
+              >
+                L
+              </label>
+            </div>
+            <div className='size-selector'>
+              <input type='radio' name='size' id='size-xl' className='hidden' />
+              <label
+                htmlFor='size-xl'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
+              >
+                XL
+              </label>
+            </div>
+          </div>
+        </div>
+        <div className='pt-4'>
+          <h2 className='text-xl text-gray-800 mb-3 uppercase font-medium'>
+            Color
+          </h2>
+          <div className='flex items-center gap-2'>
+            <div className='color-selector'>
+              <input
+                type='radio'
+                name='color'
+                id='color-red'
+                className='hidden'
+              />
+              <label
+                htmlFor='color-red'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer bg-primary'
+              />
+            </div>
+            <div className='color-selector'>
+              <input
+                type='radio'
+                name='color'
+                id='color-white'
+                className='hidden'
+              />
+              <label
+                htmlFor='color-white'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer bg-white'
+              />
+            </div>
+            <div className='color-selector'>
+              <input
+                type='radio'
+                name='color'
+                id='color-black'
+                className='hidden'
+              />
+              <label
+                htmlFor='color-black'
+                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer bg-black'
+              />
+            </div>
           </div>
         </div>
       </div>
