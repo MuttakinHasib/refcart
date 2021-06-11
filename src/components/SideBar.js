@@ -1,4 +1,5 @@
 import { brands, categories } from '@configs/static';
+import { ProductColor, ProductSize } from './index';
 
 const SideBar = () => {
   return (
@@ -78,96 +79,13 @@ const SideBar = () => {
           <h2 className='text-xl text-gray-800 mb-3 uppercase font-medium'>
             Size
           </h2>
-          <div className='flex items-center gap-2'>
-            <div className='size-selector'>
-              <input type='radio' name='size' id='size-xs' className='hidden' />
-              <label
-                htmlFor='size-xs'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
-              >
-                XS
-              </label>
-            </div>
-            <div className='size-selector'>
-              <input type='radio' name='size' id='size-sm' className='hidden' />
-              <label
-                htmlFor='size-sm'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
-              >
-                S
-              </label>
-            </div>
-            <div className='size-selector'>
-              <input type='radio' name='size' id='size-m' className='hidden' />
-              <label
-                htmlFor='size-m'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
-              >
-                M
-              </label>
-            </div>
-            <div className='size-selector'>
-              <input type='radio' name='size' id='size-l' className='hidden' />
-              <label
-                htmlFor='size-l'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
-              >
-                L
-              </label>
-            </div>
-            <div className='size-selector'>
-              <input type='radio' name='size' id='size-xl' className='hidden' />
-              <label
-                htmlFor='size-xl'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer'
-              >
-                XL
-              </label>
-            </div>
-          </div>
+          <ProductSize />
         </div>
         <div className='pt-4'>
           <h2 className='text-xl text-gray-800 mb-3 uppercase font-medium'>
             Color
           </h2>
-          <div className='flex items-center gap-2'>
-            <div className='color-selector'>
-              <input
-                type='radio'
-                name='color'
-                id='color-red'
-                className='hidden'
-              />
-              <label
-                htmlFor='color-red'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer bg-primary'
-              />
-            </div>
-            <div className='color-selector'>
-              <input
-                type='radio'
-                name='color'
-                id='color-white'
-                className='hidden'
-              />
-              <label
-                htmlFor='color-white'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer bg-white'
-              />
-            </div>
-            <div className='color-selector'>
-              <input
-                type='radio'
-                name='color'
-                id='color-black'
-                className='hidden'
-              />
-              <label
-                htmlFor='color-black'
-                className='text-xs border border-gray-200 rounded-sm h-6 w-6 flex items-center justify-center shadow-sm cursor-pointer bg-black'
-              />
-            </div>
-          </div>
+          <ProductColor />
         </div>
       </div>
     </div>

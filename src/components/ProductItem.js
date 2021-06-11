@@ -9,57 +9,59 @@ const ProductItem = ({ product }) => {
           alt=''
           className='w-full'
         />
-        <div className='opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 transition duration-300 cursor-pointer'>
-          <a
-            href='#'
-            className='text-center rounded-full text-white bg-primary w-9 h-9 flex items-center justify-center transition hover:bg-gray-800'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-6 w-6'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
+        <Link href={`/product/${product.id}`}>
+          <a className='opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 transition duration-300 cursor-pointer'>
+            {/* <a
+              href='#'
+              className='text-center rounded-full text-white bg-primary w-9 h-9 flex items-center justify-center transition hover:bg-gray-800'
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-              />
-            </svg>
-          </a>
-          <a
-            href='#'
-            className='text-center rounded-full text-white bg-primary w-9 h-9 flex items-center justify-center transition hover:bg-gray-800'
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-6 w-6'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                />
+              </svg>
+            </a>
+            <a
+              href='#'
+              className='text-center rounded-full text-white bg-primary w-9 h-9 flex items-center justify-center transition hover:bg-gray-800'
             >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
-              />
-            </svg>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
+                />
+              </svg>
+            </a> */}
           </a>
-        </div>
+        </Link>
       </div>
 
       <div className='pt-4 pb-3 px-4'>
-        <Link href='/'>
+        <Link href={`/product/${product.id}`}>
           <a>
             <h3 className='uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition'>
               {product.title}
             </h3>
           </a>
         </Link>
-        <div className='flex items-baseline mb-1 space-x-2'>
+        <div className='flex items-baseline mb-1 space-x-2 font-roboto'>
           <p className='text-primary text-lg font-semibold'>${product.price}</p>
           <p className='text-gray-500 font-light text-sm line-through'>
             ${product.lessPrice}
