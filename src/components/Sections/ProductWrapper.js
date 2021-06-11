@@ -16,5 +16,4 @@ const ProductWrapper = () => {
   );
 };
 
-
 export default ProductWrapper;

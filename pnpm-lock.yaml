@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@icons-pack/react-simple-icons': ^4.4.0
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.2.6
   next: 10.2.3
@@ -10,6 +11,7 @@ specifiers:
   tailwindcss: ^2.1.4
 
 dependencies:
+  '@icons-pack/react-simple-icons': 4.4.0_react@17.0.2
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.1.4
   next: 10.2.3_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
@@ -77,6 +79,15 @@ packages:
 
   /@hapi/hoek/9.2.0:
     resolution: {integrity: sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==}
+    dev: false
+
+  /@icons-pack/react-simple-icons/4.4.0_react@17.0.2:
+    resolution: {integrity: sha512-LzGL9aeO/KgDkkvgt96fdel1z2KrUW0gC7F9frl9Pd9ocwi42d14nIWlN9buEAZHQplDmfyMBpixcje7xhs8bA==}
+    peerDependencies:
+      react: ^16.13 || ^17
+    dependencies:
+      prop-types: 15.7.2
+      react: 17.0.2
     dev: false
 
   /@next/env/10.2.3:
