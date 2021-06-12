@@ -1,6 +1,8 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@headlessui/react': ^1.2.0
+  '@heroicons/react': ^1.0.1
   '@icons-pack/react-simple-icons': ^4.4.0
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.2.6
@@ -11,6 +13,8 @@ specifiers:
   tailwindcss: ^2.1.4
 
 dependencies:
+  '@headlessui/react': 1.2.0_react@17.0.2
+  '@heroicons/react': 1.0.1_react@17.0.2
   '@icons-pack/react-simple-icons': 4.4.0_react@17.0.2
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.1.4
   next: 10.2.3_react-dom@17.0.2+react@17.0.2
@@ -79,6 +83,23 @@ packages:
 
   /@hapi/hoek/9.2.0:
     resolution: {integrity: sha512-sqKVVVOe5ivCaXDWivIJYVSaEgdQK9ul7a4Kity5Iw7u9+wBAPbX1RMSnLLmp7O4Vzj0WOWwMAJsTL00xwaNug==}
+    dev: false
+
+  /@headlessui/react/1.2.0_react@17.0.2:
+    resolution: {integrity: sha512-19DkLz8gDgbi+WvkoTzi9vs0NK9TJf94vbYhMzB4LYJo03Kili0gmvXT9CiKZoxXZ7YAvy/b1U1oQKEnjWrqxw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+    dependencies:
+      react: 17.0.2
+    dev: false
+
+  /@heroicons/react/1.0.1_react@17.0.2:
+    resolution: {integrity: sha512-uikw2gKCmqnvjVxitecWfFLMOKyL9BTFcU4VM3hHj9OMwpkCr5Ke+MRMyY2/aQVmsYs4VTq7NCFX05MYwAHi3g==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /@icons-pack/react-simple-icons/4.4.0_react@17.0.2:

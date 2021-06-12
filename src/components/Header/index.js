@@ -1,3 +1,4 @@
+import { AdminTopBar } from '@components/AdminPage';
 import { useRouter } from 'next/router';
 import NavBar from './NavBar';
 import TopBar from './TopBar';
@@ -7,12 +8,10 @@ const Header = () => {
   const isAdmin = pathname.split('/')[1] === 'admin';
   return (
     <header>
-      {!isAdmin && (
-        <>
-          <TopBar />
-          <NavBar />
-        </>
-      )}
+      <>
+        {isAdmin ? <AdminTopBar /> : <TopBar />}
+        {!isAdmin && <NavBar />}
+      </>
     </header>
   );
 };

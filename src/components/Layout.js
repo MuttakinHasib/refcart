@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { Sidebar } from './AdminPage';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -9,7 +10,10 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      {isAdmin && <Sidebar />}
+      <main className={isAdmin ? 'min-h-screen bg-gray-100' : ''}>
+        {children}
+      </main>
       {!isAdmin && <Footer />}
     </>
   );
