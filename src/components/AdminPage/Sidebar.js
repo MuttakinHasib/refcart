@@ -14,7 +14,7 @@ const Sidebar = () => {
         Refcart
       </div>
       <div className='py-5'>
-        <Link href='/admin/admin'>
+        <Link href='/admin'>
           <a className='flex gap-3 items-center my-1 px-4 py-3 text-white border-l-4 border-blue-600 bg-gray-900'>
             <HomeIcon className='w-5' />
             <span>Dashboard</span>
