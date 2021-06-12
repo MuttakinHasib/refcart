@@ -10,7 +10,7 @@ const TopBar = () => {
             <img src='/images/logo.svg' alt='' className='w-32' />
           </a>
         </Link>
-        <div className='w-full max-w-xl relative flex items-center'>
+        <div className='w-full hidden max-w-lg xl:max-w-xl relative lg:flex items-center'>
           <span className='absolute top-3 left-4 text-base text-gray-400'>
             <svg
               xmlns='http://www.w3.org/2000/svg'

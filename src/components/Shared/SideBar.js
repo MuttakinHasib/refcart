@@ -1,5 +1,5 @@
 import { brands, categories } from '@configs/static';
-import { ProductColor, ProductSize } from './index';
+import { ProductColor, ProductSize } from '../index';
 
 const SideBar = () => {
   return (

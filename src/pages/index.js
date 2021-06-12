@@ -1,5 +1,5 @@
 import Banner from '@components/Banner';
-import { Category, Feature, ProductWrapper } from '@components/Sections';
+import { Category, Feature, ProductWrapper } from '@components/HomePage/Sections';
 import { API_URL } from '@configs/index';
 
 const HomeScreen = () => {

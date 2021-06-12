@@ -1,4 +1,4 @@
-import ProductItem from '@components/ProductItem';
+import ProductItem from '@components/Shared/ProductItem';
 import { products } from '@configs/static';
 
 const ProductWrapper = () => {

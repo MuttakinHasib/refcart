@@ -1,4 +1,5 @@
 import { BreadCrumbs, ProductColor, ProductSize } from '@components/index';
+import { Facebook, Twitter } from '@icons-pack/react-simple-icons';
 
 const ProductDetails = () => {
   return (
@@ -132,7 +133,7 @@ const ProductDetails = () => {
           {/* Quantity */}
           <div className='py-4'>
             <h2 className='text-lg text-gray-800 mb-3 uppercase font-medium'>
-              Color
+              Quantity
             </h2>
             <div className='flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max'>
               <button className='h-8 w-8 text-xl flex items-center justify-center select-none focus:outline-none'>
@@ -147,6 +148,98 @@ const ProductDetails = () => {
             </div>
           </div>
           {/* Quantity End */}
+          <div className='flex gap-3 border-b border-gray-200 pb-5 mt-6'>
+            <button className='focus:outline-none uppercase font-medium rounded border border-primary px-8 py-2 flex items-center justify-center space-x-2 bg-primary text-white hover:text-primary hover:bg-transparent transition'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
+                />
+              </svg>
+              <span>Add to cart</span>
+            </button>
+            <button className='focus:outline-none uppercase font-medium rounded border border-gray-300 px-8 py-2 flex items-center justify-center space-x-2 bg-transparent text-gray-600 hover:text-primary transition'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z'
+                />
+              </svg>
+              <span>Wishlist</span>
+            </button>
+          </div>
+          {/* Social Icons */}
+          <div className='flex items-center gap-6 my-4'>
+            <a
+              href=''
+              className='text-gray-400 hover:text-[#1877F2] transition'
+            >
+              <Facebook />
+            </a>
+            <a
+              href=''
+              className='text-gray-400 hover:text-[#1DA1F2] transition'
+            >
+              <Twitter />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className='container py-16'>
+        <h3 className='border-b border-gray-200 pb-3 font-medium text-gray-800'>
+          Product Details
+        </h3>
+        <div className='w-3/5 pt-6'>
+          <p className='text-gray-600'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
+            inventore illum excepturi hic vero quod ullam possimus neque maxime
+            voluptatum labore, illo, repellat architecto ipsum laborum facere
+            sequi! Dolor, cumque eligendi sunt dicta provident rerum quisquam
+            similique molestias saepe nobis consectetur, deleniti corrupti
+            pariatur mollitia iure exercitationem assumenda numquam dolorem?
+          </p>
+          <table className="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
+            <tr>
+              <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
+Color
+              </th>
+              <td className='py-2 px-4 border border-gray-300'>
+Black, Brown, Red
+              </td>
+            </tr>
+            <tr>
+              <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
+Material
+              </th>
+              <td className='py-2 px-4 border border-gray-300'>
+Artificial Leather
+              </td>
+            </tr>
+            <tr>
+              <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
+Weight
+              </th>
+              <td className='py-2 px-4 border border-gray-300'>
+55kg
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
     </>
