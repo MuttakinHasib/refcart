@@ -1,11 +1,15 @@
-import Banner from '@components/Banner';
-import { Category, Feature, ProductWrapper } from '@components/HomePage/Sections';
+import { Slider } from '@components/index';
+import {
+  Category,
+  Feature,
+  ProductWrapper,
+} from '@components/HomePage/Sections';
 import { API_URL } from '@configs/index';
 
 const HomeScreen = () => {
   return (
     <>
-      <Banner />
+      <Slider />
       <Feature />
       <Category />
       <ProductWrapper />
