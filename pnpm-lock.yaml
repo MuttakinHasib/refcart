@@ -4,6 +4,7 @@ specifiers:
   '@headlessui/react': ^1.2.0
   '@heroicons/react': ^1.0.1
   '@icons-pack/react-simple-icons': ^4.4.0
+  '@react-hook/media-query': ^1.1.1
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.2.6
   next: 10.2.3
@@ -18,6 +19,7 @@ dependencies:
   '@headlessui/react': 1.2.0_react@17.0.2
   '@heroicons/react': 1.0.1_react@17.0.2
   '@icons-pack/react-simple-icons': 4.4.0_react@17.0.2
+  '@react-hook/media-query': 1.1.1_react@17.0.2
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.1.4
   next: 10.2.3_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
@@ -187,6 +189,14 @@ packages:
   /@opentelemetry/context-base/0.14.0:
     resolution: {integrity: sha512-sDOAZcYwynHFTbLo6n8kIbLiVF3a3BLkrmehJUyEbT9F+Smbi47kLGS2gG2g0fjBLR/Lr1InPD7kXL7FaTqEkw==}
     engines: {node: '>=8.0.0'}
+    dev: false
+
+  /@react-hook/media-query/1.1.1_react@17.0.2:
+    resolution: {integrity: sha512-VM14wDOX5CW5Dn6b2lTiMd79BFMTut9AZj2+vIRT3LCKgMCYmdqruTtzDPSnIVDQdtxdPgtOzvU9oK20LopuOw==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /@tailwindcss/forms/0.3.3_tailwindcss@2.1.4:
