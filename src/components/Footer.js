@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <>
       <footer className='bg-white pt-16 pb-12 border-t border-gray-100'>
-        <div className='container grid grid-cols-3 gap-6'>
+        <div className='container grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6'>
           <div className='col-span-1 space-y-8'>
             <img src='/images/logo.svg' alt='' className='w-30' />
             <p className='text-gray-500'>
@@ -13,7 +13,7 @@ const Footer = () => {
             </p>
             <SocialIcons />
           </div>
-          <div className='col-span-2 grid grid-cols-2 gap-8'>
+          <div className='lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-8'>
             <div className='grid grid-cols-2 gap-8'>
               <div>
                 <h2 className='text-sm font-semibold text-gray-400 uppercase tracking-wider'>
