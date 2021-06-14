@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import Swiper from 'react-id-swiper';
 
@@ -29,7 +30,7 @@ const Slider = () => {
           data-swiper-parallax={parallaxAmount}
           data-swiper-parallax-opacity={parallaxOpacity}
         >
-          <img src='/images/banner-1.jpg' alt=''></img>
+          <Image src='/images/banner-1.jpg' layout='fill' priority />
         </div>
         <div className='container content py-16 sm:py-10 md:py-24 lg:py-32'>
           <h1 className='text-4xl md:text-5xl lg:text-6xl font-medium text-gray-800 mb-4 capitalize'>
@@ -55,7 +56,7 @@ const Slider = () => {
           data-swiper-parallax={parallaxAmount}
           data-swiper-parallax-opacity={parallaxOpacity}
         >
-          <img src='/images/banner-2.jpg' alt=''></img>
+          <Image src='/images/banner-2.jpg' layout='fill' priority />
         </div>
         <div className='container content py-16 sm:py-10 md:py-24 lg:py-32'>
           <h1 className='text-4xl md:text-5xl lg:text-6xl font-medium text-gray-800 mb-4 capitalize'>
@@ -81,7 +82,7 @@ const Slider = () => {
           data-swiper-parallax={parallaxAmount}
           data-swiper-parallax-opacity={parallaxOpacity}
         >
-          <img src='/images/banner-3.jpg' alt=''></img>
+          <Image src='/images/banner-3.jpg' layout='fill' priority />
         </div>
         <div className='container content py-16 sm:py-10 md:py-24 lg:py-32'>
           <h1 className='text-4xl md:text-5xl lg:text-6xl font-medium text-gray-800 mb-4 capitalize'>
