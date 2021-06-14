@@ -1,5 +1,6 @@
-import { categories } from '@configs/static';
 import Link from 'next/link';
+import Image from 'next/image';
+import { categories } from '@configs/static';
 
 const Category = () => {
   return (
@@ -13,7 +14,14 @@ const Category = () => {
             key={index}
             className='relative rounded-md overflow-hidden group'
           >
-            <img src={category.image} alt='' className='w-full' />
+            <div className='wrapper-image'>
+              <Image
+                src={category.image}
+                width={1540}
+                height={960}
+                priority
+              />
+            </div>
             <Link href={category.url}>
               <a className='absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center font-roboto font-medium text-white transition group-hover:bg-opacity-50'>
                 {category.name}

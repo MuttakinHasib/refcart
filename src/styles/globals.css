@@ -38,3 +38,6 @@
     @apply m-auto relative z-10;
   }
 }
+.wrapper-image > div:first-child {
+  position: static !important;
+}
