@@ -29,7 +29,7 @@ const settings = {
     {
       breakpoint: 600,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 1,
       },
     },
@@ -53,7 +53,7 @@ const ProductDetails = () => {
             focusOnSelect
           >
             {product.images.map((image, index) => (
-              <div key={index} className='focus:outline-none p-3'>
+              <div key={index} className='focus:outline-none p-2 pb-1 md:p-3'>
                 <Image src={image} alt='' width={1080} height={800} priority />
               </div>
             ))}
@@ -69,7 +69,7 @@ const ProductDetails = () => {
               {product.images.map((image, index) => (
                 <div
                   key={index}
-                  className='p-3 cursor-pointer focus:outline-none'
+                  className='p-2 md:p-3 cursor-pointer focus:outline-none'
                 >
                   <Image
                     className='thumb-img'
