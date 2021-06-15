@@ -48,7 +48,10 @@
   }
 
   .thumbnail .slick-slide.slick-active.slick-current .thumb-img {
-    @apply border-4 border-solid border-primary !important;   
+    @apply border-4 border-solid border-primary !important;
   }
 
+  button {
+    @apply focus:outline-none;
+  }
 }

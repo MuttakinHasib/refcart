@@ -1,6 +1,9 @@
 export { default as Layout } from './Layout';
 export { default as Slider } from './Slider';
+export { default as Button } from './Shared/Button';
+export { default as QuantityButton } from './Shared/QuantityButton';
 export { default as BreadCrumbs } from './Shared/BreadCrumbs';
+export { default as CartSummary } from './Shared/CartSummary';
 export { default as SideBar } from './ShopPage/SideBar';
 export { default as ProductItem } from './Shared/ProductItem';
 export { default as ProductSize } from './Shared/ProductSize';

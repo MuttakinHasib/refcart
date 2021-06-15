@@ -61,8 +61,8 @@ const BreadCrumbs = ({ items }) => {
                   />
                 </svg>
               </div>
-              <Link href={`/${item.toLowerCase()}`}>
-                <a className='text-primary font-medium'>{item}</a>
+              <Link href={`/${item.url}`}>
+                <a className='text-primary font-medium'>{item.title}</a>
               </Link>
             </>
           )}

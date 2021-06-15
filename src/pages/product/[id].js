@@ -1,7 +1,12 @@
 import { useRef } from 'react';
 import Image from 'next/image';
 import Slider from 'react-slick';
-import { BreadCrumbs, ProductColor, ProductSize } from '@components/index';
+import {
+  BreadCrumbs,
+  ProductColor,
+  ProductSize,
+  QuantityButton,
+} from '@components/index';
 import { Facebook, Twitter } from '@icons-pack/react-simple-icons';
 import { product } from '@configs/static';
 
@@ -42,7 +47,8 @@ const ProductDetails = () => {
 
   return (
     <>
-      <BreadCrumbs items={['Shop', 'Something']} />
+      <BreadCrumbs items={[{ title: 'Shop', url: 'shop' }, 'Something']} />
+
       <div className='container grid grid-cols-1 lg:grid-cols-2 gap-8'>
         <div>
           <Slider
@@ -54,13 +60,7 @@ const ProductDetails = () => {
           >
             {product.images.map((image, index) => (
               <div key={index} className='focus:outline-none px-2 md:p-3'>
-                <Image
-                  src={image}
-                  alt=''
-                  width={1080}
-                  height={800}
-                  priority
-                />
+                <Image src={image} alt='' width={1080} height={800} priority />
               </div>
             ))}
           </Slider>
@@ -189,17 +189,7 @@ const ProductDetails = () => {
             <h2 className='text-lg text-gray-800 mb-3 tracking-wider font-medium'>
               Quantity
             </h2>
-            <div className='flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max'>
-              <button className='h-8 w-8 text-xl flex items-center justify-center select-none focus:outline-none'>
-                -
-              </button>
-              <div className='h-8 px-2 text-base flex items-center justify-center'>
-                04
-              </div>
-              <button className='h-8 w-8 text-xl flex items-center justify-center select-none focus:outline-none'>
-                +
-              </button>
-            </div>
+            <QuantityButton quantity='01' />
           </div>
           {/* Quantity End */}
           <div className='flex flex-col sm:flex-row gap-3 border-b border-gray-200 pb-5 mt-6'>
