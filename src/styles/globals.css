@@ -51,7 +51,8 @@
     @apply border-4 border-solid border-primary !important;
   }
 
-  button {
+  button,
+  a {
     @apply focus:outline-none;
   }
 }

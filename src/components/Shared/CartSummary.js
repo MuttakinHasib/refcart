@@ -27,7 +27,7 @@ const CartSummary = () => {
       <div className='flex items-center mb-8'>
         <input
           type='text'
-          className='flex-1 py-2 text-sm w-full border border-gray-200 rounded-l'
+          className='focus:ring-0 border-r-0 flex-1 py-2 text-sm w-full border border-gray-200 rounded-l'
           placeholder='Enter coupon'
         />
         <button className='bg-primary text-white font-medium py-2 px-3 rounded-r uppercase'>

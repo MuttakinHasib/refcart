@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const BreadCrumbs = ({ items }) => {
   return (
-    <div className='container py-4 flex items-center gap-3'>
+    <div className='container py-5 flex items-center gap-3'>
       <Link href='/'>
         <a className='text-primary'>
           <svg
