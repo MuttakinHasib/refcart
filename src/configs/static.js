@@ -106,4 +106,15 @@ module.exports = {
       review: 5,
     },
   ],
+  product:{
+    images: [
+      '/images/products/product1.jpg',
+      '/images/products/product2.jpg',
+      '/images/products/product3.jpg',
+      '/images/products/product4.jpg',
+      '/images/products/product5.jpg',
+      '/images/products/product6.jpg',
+      '/images/products/product7.jpg',
+    ]
+  }
 };

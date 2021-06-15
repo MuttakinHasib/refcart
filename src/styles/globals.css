@@ -21,23 +21,34 @@
   .size-selector input:checked + label {
     @apply bg-primary text-white;
   }
+
   .color-selector input:checked + label {
     @apply ring-2 ring-primary;
   }
+
   .hero-slide {
     @apply h-auto flex relative overflow-hidden;
   }
+
   .slide-image {
     @apply h-full w-full absolute inset-0 flex items-center justify-center;
   }
+
   .slide-image img {
     object-position: 46%;
     @apply w-auto h-full object-cover md:object-right;
   }
+
   .hero-slider .content {
     @apply m-auto relative z-10;
   }
-}
-.wrapper-image > div:first-child {
-  position: static !important;
+
+  .wrapper-image > div:first-child {
+    @apply static !important;
+  }
+
+  .thumbnail .slick-slide.slick-active.slick-current .thumb-img {
+    @apply border-4 border-solid border-primary !important;   
+  }
+
 }

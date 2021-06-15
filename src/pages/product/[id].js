@@ -1,43 +1,92 @@
+import { useRef } from 'react';
+import Image from 'next/image';
+import Slider from 'react-slick';
 import { BreadCrumbs, ProductColor, ProductSize } from '@components/index';
 import { Facebook, Twitter } from '@icons-pack/react-simple-icons';
+import { product } from '@configs/static';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+const settings = {
+  dots: true,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  initialSlide: 0,
+  arrows: false,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2,
+      },
+    },
+  ],
+};
 
 const ProductDetails = () => {
+  const original = useRef(null);
+  const thumbnail = useRef(null);
+
   return (
     <>
       <BreadCrumbs items={['Shop', 'Something']} />
-      <div className='container grid grid-cols-2 gap-8'>
+      <div className='container grid grid-cols-1 lg:grid-cols-2 gap-8'>
         <div>
-          <img src='/images/products/product9.jpg' alt='' className='w-full' />
-          <div className='grid grid-cols-5 gap-4 mt-4'>
-            <img
-              src='/images/products/product1.jpg'
-              alt=''
-              className='w-full border cursor-pointer'
-            />
-            <img
-              src='/images/products/product2.jpg'
-              alt=''
-              className='w-full border cursor-pointer'
-            />
-            <img
-              src='/images/products/product3.jpg'
-              alt=''
-              className='w-full border cursor-pointer'
-            />
-            <img
-              src='/images/products/product4.jpg'
-              alt=''
-              className='w-full border cursor-pointer'
-            />
-            <img
-              src='/images/products/product5.jpg'
-              alt=''
-              className='w-full border cursor-pointer'
-            />
+          <Slider
+            asNavFor={thumbnail.current}
+            ref={original}
+            slidesToShow={1}
+            slidesToScroll={1}
+            focusOnSelect
+          >
+            {product.images.map((image, index) => (
+              <div key={index} className='focus:outline-none p-3'>
+                <Image src={image} alt='' width={1080} height={800} priority />
+              </div>
+            ))}
+          </Slider>
+          <div className='thumbnail'>
+            <Slider
+              asNavFor={original.current}
+              ref={thumbnail}
+              swipeToSlide={true}
+              focusOnSelect={true}
+              {...settings}
+            >
+              {product.images.map((image, index) => (
+                <div
+                  key={index}
+                  className='p-3 cursor-pointer focus:outline-none'
+                >
+                  <Image
+                    className='thumb-img'
+                    src={image}
+                    alt=''
+                    width={1080}
+                    height={800}
+                    priority
+                  />
+                </div>
+              ))}
+            </Slider>
           </div>
         </div>
         <div>
-          <h2 className='text-3xl font-medium uppercase mb-2'>
+          <h2 className='text-2xl md:text-3xl font-medium uppercase mb-2'>
             Italian L shape sofa
           </h2>
           <div className='flex items-center mb-4'>
@@ -132,7 +181,7 @@ const ProductDetails = () => {
 
           {/* Quantity */}
           <div className='py-4'>
-            <h2 className='text-lg text-gray-800 mb-3 uppercase font-medium'>
+            <h2 className='text-lg text-gray-800 mb-3 tracking-wider font-medium'>
               Quantity
             </h2>
             <div className='flex border border-gray-300 text-gray-600 divide-x divide-gray-300 w-max'>
@@ -148,7 +197,7 @@ const ProductDetails = () => {
             </div>
           </div>
           {/* Quantity End */}
-          <div className='flex gap-3 border-b border-gray-200 pb-5 mt-6'>
+          <div className='flex flex-col sm:flex-row gap-3 border-b border-gray-200 pb-5 mt-6'>
             <button className='focus:outline-none uppercase font-medium rounded border border-primary px-8 py-2 flex items-center justify-center space-x-2 bg-primary text-white hover:text-primary hover:bg-transparent transition'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -214,30 +263,28 @@ const ProductDetails = () => {
             similique molestias saepe nobis consectetur, deleniti corrupti
             pariatur mollitia iure exercitationem assumenda numquam dolorem?
           </p>
-          <table className="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
+          <table className='table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6'>
             <tr>
               <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
-Color
+                Color
               </th>
               <td className='py-2 px-4 border border-gray-300'>
-Black, Brown, Red
+                Black, Brown, Red
               </td>
             </tr>
             <tr>
               <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
-Material
+                Material
               </th>
               <td className='py-2 px-4 border border-gray-300'>
-Artificial Leather
+                Artificial Leather
               </td>
             </tr>
             <tr>
               <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
-Weight
+                Weight
               </th>
-              <td className='py-2 px-4 border border-gray-300'>
-55kg
-              </td>
+              <td className='py-2 px-4 border border-gray-300'>55kg</td>
             </tr>
           </table>
         </div>
