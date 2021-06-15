@@ -54,7 +54,14 @@ const ProductDetails = () => {
           >
             {product.images.map((image, index) => (
               <div key={index} className='focus:outline-none px-2 md:p-3'>
-                <Image src={image} alt='' width={1080} height={800} priority />
+                <Image
+                  loading
+                  src={image}
+                  alt=''
+                  width={1080}
+                  height={800}
+                  priority
+                />
               </div>
             ))}
           </Slider>
@@ -73,6 +80,7 @@ const ProductDetails = () => {
                 >
                   <Image
                     className='thumb-img'
+                    loading
                     src={image}
                     alt=''
                     width={1080}
