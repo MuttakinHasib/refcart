@@ -53,6 +53,6 @@
 
   button,
   a {
-    @apply focus:outline-none;
+    @apply focus:outline-none select-none;
   }
 }
