@@ -11,6 +11,7 @@ specifiers:
   postcss: ^8.3.0
   react: 17.0.2
   react-dom: 17.0.2
+  react-hook-form: ^7.8.6
   react-id-swiper: ^3.0.0
   react-slick: ^0.28.1
   slick-carousel: ^1.8.1
@@ -26,6 +27,7 @@ dependencies:
   next: 10.2.3_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-hook-form: 7.8.6_react@17.0.2
   react-id-swiper: 3.0.0_f98b30791a78a759f3c8531f1e9767e4
   react-slick: 0.28.1_react-dom@17.0.2+react@17.0.2
   slick-carousel: 1.8.1
@@ -1827,6 +1829,14 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
+    dev: false
+
+  /react-hook-form/7.8.6_react@17.0.2:
+    resolution: {integrity: sha512-kKdaySvv21tyH8WM5jYpKRxTFdknmHi7ssdBrU7cW0qRwXcr9lxVyO14MjUFlfEGe9S5VzBmTz7NKNSarV3AFw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /react-id-swiper/3.0.0_f98b30791a78a759f3c8531f1e9767e4:

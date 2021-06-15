@@ -47,7 +47,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <BreadCrumbs items={[{ title: 'Shop', url: 'shop' }, 'Something']} />
+      <BreadCrumbs items={[{ title: 'Shop', href: '/shop' }, 'Something']} />
 
       <div className='container grid grid-cols-1 lg:grid-cols-2 gap-8'>
         <div>

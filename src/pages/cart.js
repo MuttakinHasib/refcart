@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { TrashIcon } from '@heroicons/react/outline';
 import { BreadCrumbs, CartSummary, QuantityButton } from '@components/index';
 
 const CartScreen = () => {
+  const router = useRouter();
   return (
     <>
       <BreadCrumbs items={['Shopping cart']} />
@@ -44,7 +46,11 @@ const CartScreen = () => {
           </div>
         </div>
         <div className='lg:col-span-4 xl:col-span-3'>
-          <CartSummary />
+          <CartSummary
+            label='Process to checkout'
+            summary={{ subtotal: 45.0, total: 45.0 }}
+            onClick={() => router.push('/shipping')}
+          />
         </div>
       </div>
     </>
