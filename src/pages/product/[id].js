@@ -55,7 +55,6 @@ const ProductDetails = () => {
             {product.images.map((image, index) => (
               <div key={index} className='focus:outline-none px-2 md:p-3'>
                 <Image
-                  loading
                   src={image}
                   alt=''
                   width={1080}
@@ -80,7 +79,6 @@ const ProductDetails = () => {
                 >
                   <Image
                     className='thumb-img'
-                    loading
                     src={image}
                     alt=''
                     width={1080}
