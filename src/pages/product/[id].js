@@ -250,10 +250,10 @@ const ProductDetails = () => {
         </div>
       </div>
       <div className='container py-16'>
-        <h3 className='border-b border-gray-200 pb-3 font-medium text-gray-800'>
+        <h3 className='text-lg border-b border-gray-200 pb-3 font-medium text-gray-800'>
           Product Details
         </h3>
-        <div className='w-3/5 pt-6'>
+        <div className='w-full md:w-3/5 pt-6'>
           <p className='text-gray-600'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
             inventore illum excepturi hic vero quod ullam possimus neque maxime
