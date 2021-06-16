@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { BreadCrumbs, Button, CartSummary } from '@components/index';
+import {
+  BreadCrumbs,
+  CardPayment,
+  CartSummary,
+  CashOnDelivery,
+} from '@components/index';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 
 const PaymentScreen = () => {
@@ -19,7 +24,7 @@ const PaymentScreen = () => {
             Select payment method
           </h2>
 
-          <div className='flex items-center gap-8 my-10'>
+          <div className='flex items-center gap-3 md:gap-8 my-10'>
             <div className='payment-method'>
               <input
                 type='radio'
@@ -39,7 +44,7 @@ const PaymentScreen = () => {
                   alt=''
                   className='mx-auto'
                 />
-                <p className='text-gray-700 text-base text-center font-medium'>
+                <p className='text-gray-700 text-sm text-center font-medium'>
                   Credit Card
                 </p>
                 <div className='check bg-white absolute top-[-10px] right-[-10px] text-primary'>
@@ -75,24 +80,9 @@ const PaymentScreen = () => {
               </label>
             </div>
           </div>
-          <div className='max-w-2xl shadow-box py-6 px-10'>
-            {paymentMethod === 'cod' && (
-              <>
-                <div className='flex items-center justify-between'>
-                  <p className='text-base font-medium text-gray-700'>
-                    Cash on Delivery
-                  </p>
-                  <img src='/images/icons/cash-on.png' alt='' />
-                </div>
-                <div className='text-center w-3/4 mx-auto text-gray-600 my-6'>
-                  you can pay in cash to our courier when you receive the goods
-                  at your doorstep.
-                </div>
-                <div className='text-center pb-4'>
-                  <Button label='Confirm order' />
-                </div>
-              </>
-            )}
+          <div className='lg:max-w-2xl shadow-box py-6 px-6 md:px-10'>
+            {paymentMethod === 'cod' && <CashOnDelivery />}
+            {paymentMethod === 'credit' && <CardPayment />}
           </div>
         </div>
         <div className='lg:col-span-3'>
