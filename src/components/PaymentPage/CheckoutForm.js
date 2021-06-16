@@ -1,13 +1,16 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { Button } from '@components/Shared';
 import { useMediaQuery } from '@react-hook/media-query';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import axios from 'axios';
-import { useState } from 'react';
 
 const CheckoutForm = () => {
   const isMediumDevice = useMediaQuery('only screen and (max-width: 768px)');
 
   const style = { base: { fontSize: isMediumDevice ? '14px' : '18px' } };
+
+  const router = useRouter();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
@@ -30,9 +33,10 @@ const CheckoutForm = () => {
     } else {
       const { id } = paymentMethod;
       try {
-        const { data } = await axios.post('/api/charge', { id, amount: 4567 });
-        console.log(data);
+        await axios.post('/api/charge', { id, amount: 4567 });
+
         setLoading(false);
+        router.push('/order-completed');
       } catch (err) {
         console.error(err);
       }

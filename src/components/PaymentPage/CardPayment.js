@@ -1,8 +1,4 @@
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_CLIENT_KEY);
 
 const CardPayment = () => {
   return (
@@ -24,9 +20,7 @@ const CardPayment = () => {
         </div>
       </div>
       <div className='mt-6'>
-        <Elements stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
+        <CheckoutForm />
       </div>
     </>
   );
