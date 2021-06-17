@@ -3,7 +3,7 @@ import { ProductColor, ProductSize } from '../index';
 
 const SideBar = () => {
   return (
-    <>
+    <div>
       <div className='divide-y divide-gray-200 space-y-5'>
         <div>
           <h2 className='text-xl text-gray-800 pt-4 mb-3 uppercase font-medium'>
@@ -88,7 +88,7 @@ const SideBar = () => {
           <ProductColor />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

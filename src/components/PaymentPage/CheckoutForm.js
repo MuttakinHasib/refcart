@@ -46,8 +46,7 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <CardElement
-        options={{ style }}
-        hidePostalCode={true}
+        options={{ style, hidePostalCode: true }}
         className='border border-gray-300 border-dashed px-4 py-3 mb-4 rounded'
       />
       <Button

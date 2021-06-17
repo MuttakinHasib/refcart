@@ -8,11 +8,11 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_CLIENT_KEY);
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Elements stripe={stripePromise}>
+    <Elements stripe={stripePromise}>
+      <Layout>
         <Component {...pageProps} />
-      </Elements>
-    </Layout>
+      </Layout>
+    </Elements>
   );
 }
 
