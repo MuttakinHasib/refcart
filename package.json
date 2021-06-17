@@ -17,7 +17,10 @@
     "@stripe/stripe-js": "^1.15.0",
     "@tailwindcss/forms": "^0.3.3",
     "axios": "^0.21.1",
+    "lodash.startcase": "^4.4.0",
     "next": "10.2.3",
+    "next-auth": "^3.27.0",
+    "nodemailer": "^6.6.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.8.6",
@@ -32,6 +35,6 @@
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.0",
-    "tailwindcss": "^2.1.4"
+    "tailwindcss": "^2.2.0"
   }
 }
