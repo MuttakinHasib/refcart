@@ -23,9 +23,9 @@ const NavBar = () => {
           </svg>
 
           <span className='capitalize ml-2'>All Categories</span>
-          <div className='absolute top-full divide-y left-0 w-full py-3 bg-white shadow-md opacity-0 group-hover:opacity-100 transition duration-500 invisible group-hover:visible'>
+          <div className='absolute top-full divide-y left-0 w-full py-3 bg-white shadow-md opacity-0 group-hover:opacity-100 transition duration-500 invisible group-hover:visible z-10'>
             {categories.map((category, index) => (
-              <Link key={index} href={category.url}>
+              <Link key={index} href={`/shop?category=${category.url}`}>
                 <a className='flex items-center px-6 py-3 transition hover:bg-gray-100'>
                   <img
                     src={category.icon}
