@@ -53,7 +53,9 @@ const AccountScreenLayout = ({ children }) => {
             <AccountSidebar />
           </Transition>
         </div>
-        <div className='lg:col-span-9'>{children}</div>
+        <div className='lg:col-span-9'>
+          <div className='shadow-box p-6'>{children}</div>
+        </div>
       </div>
     </>
   );
