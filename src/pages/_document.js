@@ -8,6 +8,10 @@ class MyDocument extends Document {
           {/* <meta name='image' content='/banner.png' /> */}
           <meta property='og:title' content='Hasib Molla' />
           <meta
+            name='google-site-verification'
+            content='LUBT9DCkD_bj06Z0b5imXXQiZXiwadd3gYjzqN9yDy8'
+          />
+          <meta
             name='description'
             content='Hasib is a passionate self-taught Full Stack web developer from Bangladesh who develop web applications, mobile applications and desktop applications.'
           />
