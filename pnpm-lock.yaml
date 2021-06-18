@@ -22,6 +22,7 @@ specifiers:
   react-hook-form: ^7.8.6
   react-id-swiper: ^3.0.0
   react-loader-spinner: ^4.0.0
+  react-rating: ^2.0.5
   react-redux: ^7.2.4
   react-slick: ^0.28.1
   slick-carousel: ^1.8.1
@@ -49,6 +50,7 @@ dependencies:
   react-hook-form: 7.8.6_react@17.0.2
   react-id-swiper: 3.0.0_f98b30791a78a759f3c8531f1e9767e4
   react-loader-spinner: 4.0.0_react-dom@17.0.2+react@17.0.2
+  react-rating: 2.0.5_react-dom@17.0.2+react@17.0.2
   react-redux: 7.2.4_react-dom@17.0.2+react@17.0.2
   react-slick: 0.28.1_react-dom@17.0.2+react@17.0.2
   slick-carousel: 1.8.1
@@ -340,6 +342,10 @@ packages:
       hoist-non-react-statics: 3.3.2
     dev: false
 
+  /@types/lodash/4.14.170:
+    resolution: {integrity: sha512-bpcvu/MKHHeYX+qeEN8GE7DIravODWdACVA1ctevD8CN24RhPZIKMn9ntfAsrvLfSX3cR5RrBKAbYm9bGs0A+Q==}
+    dev: false
+
   /@types/node/15.12.2:
     resolution: {integrity: sha512-zjQ69G564OCIWIOHSXyQEEDpdpGl+G348RAKY0XXy9Z5kU9Vzv1GMNnkar/ZJ8dzXB3COzD9Mo9NtRZ4xfgUww==}
     dev: false
@@ -359,6 +365,14 @@ packages:
       '@types/react': 17.0.11
       hoist-non-react-statics: 3.3.2
       redux: 4.1.0
+    dev: false
+
+  /@types/react/16.14.8:
+    resolution: {integrity: sha512-QN0/Qhmx+l4moe7WJuTxNiTsjBwlBGHqKGvInSQCBdo7Qio0VtOqwsC0Wq7q3PbJlB0cR4Y4CVo1OOe6BOsOmA==}
+    dependencies:
+      '@types/prop-types': 15.7.3
+      '@types/scheduler': 0.16.1
+      csstype: 3.0.8
     dev: false
 
   /@types/react/17.0.11:
@@ -2481,6 +2495,18 @@ packages:
       react-dom: '*'
     dependencies:
       prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /react-rating/2.0.5_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-uldxgLCe5bzqGX7V+7/bPgQQj2Kok6eiMgTMxjKOhfhnQkFLDlc4TjMlp7gaJFAHWdbiOnqpiShI7z8as6oWtg==}
+    peerDependencies:
+      react: '>=16.3.0'
+      react-dom: '>=16.3.0'
+    dependencies:
+      '@types/lodash': 4.14.170
+      '@types/react': 16.14.8
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false

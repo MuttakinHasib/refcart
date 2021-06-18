@@ -27,6 +27,7 @@
     "react-hook-form": "^7.8.6",
     "react-id-swiper": "^3.0.0",
     "react-loader-spinner": "^4.0.0",
+    "react-rating": "^2.0.5",
     "react-redux": "^7.2.4",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
