@@ -31,7 +31,7 @@ const AccountSidebar = () => {
           <h2 className='text-xl font-medium'>Order History</h2>
         </ActiveLink>
         <div className='ml-8 flex flex-col gap-2'>
-          <ActiveLink href='/account/orders/returns'>My Returns</ActiveLink>
+          <ActiveLink href='/account/returns'>My Returns</ActiveLink>
           <ActiveLink href='/account/orders/cancels'>
             My Cancellations
           </ActiveLink>

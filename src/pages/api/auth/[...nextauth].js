@@ -9,6 +9,11 @@ export default NextAuth({
       // authorizationUrl:
       //   'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
     }),
-  ], // A database is optional, but required to persist accounts in a database
+    Providers.Facebook({
+      clientId: process.env.FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    }),
+  ],
+  // A database is optional, but required to persist accounts in a database
   database: process.env.DATABASE_URL,
 });

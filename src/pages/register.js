@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { signIn } from 'next-auth/client';
 
 const RegisterScreen = () => {
   return (
@@ -96,19 +97,25 @@ const RegisterScreen = () => {
           <div className='absolute w-full left-0 top-3 border-b-2 border-gray-200' />
         </div>
         <div className='flex flex-col sm:flex-row items-center gap-4 mt-6'>
-          <button className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'>
+          <button
+            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
+            onClick={() => signIn('google')}
+          >
             <img
               className='w-7'
               src='https://img.icons8.com/fluent/48/000000/google-logo.png'
             />
             <span>Google</span>
           </button>
-          <button className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'>
+          <button
+            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
+            onClick={() => signIn('facebook')}
+          >
             <img
               className='w-7'
               src='https://img.icons8.com/fluent/48/000000/facebook-new.png'
             />
-            <span>Google</span>
+            <span>Facebook</span>
           </button>
         </div>
         <p className='mt-6 text-gray-600 text-center'>
