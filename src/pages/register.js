@@ -89,12 +89,28 @@ const RegisterScreen = () => {
             </button>
           </div>
         </form>
-        {/* <div className='mt-6 flex justify-center relative'>
+        <div className='mt-6 flex justify-center relative'>
           <div className='text-gray-600 px-3 bg-white z-10 relative'>
-            Or login with
+            Or register with
           </div>
           <div className='absolute w-full left-0 top-3 border-b-2 border-gray-200' />
-        </div> */}
+        </div>
+        <div className='flex flex-col sm:flex-row items-center gap-4 mt-6'>
+          <button className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'>
+            <img
+              className='w-7'
+              src='https://img.icons8.com/fluent/48/000000/google-logo.png'
+            />
+            <span>Google</span>
+          </button>
+          <button className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'>
+            <img
+              className='w-7'
+              src='https://img.icons8.com/fluent/48/000000/facebook-new.png'
+            />
+            <span>Google</span>
+          </button>
+        </div>
         <p className='mt-6 text-gray-600 text-center'>
           Already have an account?{' '}
           <Link href='/login'>

@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/client';
 
 const LoginScreen = () => {
+  const session = useSession();
+  console.log(session);
+
   return (
     <div className='container py-16'>
       <div className='max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden'>
@@ -63,12 +67,34 @@ const LoginScreen = () => {
             </button>
           </div>
         </form>
-        {/* <div className='mt-6 flex justify-center relative'>
+        <div className='mt-6 flex justify-center relative'>
           <div className='text-gray-600 px-3 bg-white z-10 relative'>
             Or login with
           </div>
           <div className='absolute w-full left-0 top-3 border-b-2 border-gray-200' />
-        </div> */}
+        </div>
+        <div className='flex flex-col sm:flex-row items-center gap-4 mt-6'>
+          <button
+            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
+            onClick={() => signIn('google')}
+          >
+            <img
+              className='w-7'
+              src='https://img.icons8.com/fluent/48/000000/google-logo.png'
+            />
+            <span>Google</span>
+          </button>
+          <button
+            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
+            onClick={() => signIn('facebook')}
+          >
+            <img
+              className='w-7'
+              src='https://img.icons8.com/fluent/48/000000/facebook-new.png'
+            />
+            <span>Facebook</span>
+          </button>
+        </div>
         <p className='mt-6 text-gray-600 text-center'>
           Don't have an account?{' '}
           <Link href='/register'>
