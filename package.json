@@ -17,8 +17,10 @@
     "@stripe/stripe-js": "^1.15.0",
     "@tailwindcss/forms": "^0.3.3",
     "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
     "lodash.startcase": "^4.4.0",
     "mongodb": "^3.6.9",
+    "mongoose": "^5.12.14",
     "next": "10.2.3",
     "next-auth": "^3.27.0",
     "nodemailer": "^6.6.1",
@@ -27,9 +29,11 @@
     "react-hook-form": "^7.8.6",
     "react-id-swiper": "^3.0.0",
     "react-loader-spinner": "^4.0.0",
+    "react-query": "^3.17.2",
     "react-rating": "^2.0.5",
     "react-redux": "^7.2.4",
     "react-slick": "^0.28.1",
+    "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "stripe": "^8.154.0",
     "swiper": "^5.3.6"
@@ -37,6 +41,7 @@
   "devDependencies": {
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.0",
+    "redux-logger": "^3.0.6",
     "tailwindcss": "^2.2.0"
   }
 }

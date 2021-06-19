@@ -1,7 +1,18 @@
 import Link from 'next/link';
 import { signIn } from 'next-auth/client';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { register as registerUser } from 'redux/slices/user/authSlice';
 
 const RegisterScreen = () => {
+  const dispatch = useDispatch();
+  const { register, handleSubmit } = useForm();
+  const onSubmit = async data => {
+    if (data.password === data.confirmPassword) {
+      dispatch(registerUser(data));
+    }
+  };
+
   return (
     <div className='container py-16'>
       <div className='max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden'>
@@ -11,7 +22,7 @@ const RegisterScreen = () => {
         <p className='text-gray-600 mb-6 text-sm'>
           Register here if you are a new customer.
         </p>
-        <form action=''>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className='space-y-4'>
             <div>
               <label htmlFor='name' className='text-gray-600 mb-2 block'>
@@ -19,10 +30,11 @@ const RegisterScreen = () => {
               </label>
               <input
                 type='text'
-                name='name'
                 id='name'
+                name='name'
                 className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
                 placeholder='Jone Doe'
+                {...register('name', { required: true })}
               />
             </div>
             <div>
@@ -35,6 +47,7 @@ const RegisterScreen = () => {
                 id='email'
                 className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
                 placeholder='example@mail.com'
+                {...register('email', { required: true })}
               />
             </div>
             <div>
@@ -47,6 +60,7 @@ const RegisterScreen = () => {
                 id='password'
                 className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
                 placeholder='Type password'
+                {...register('password', { required: true, minLength: 6 })}
               />
             </div>
             <div>
@@ -62,6 +76,10 @@ const RegisterScreen = () => {
                 id='confirmPassword'
                 className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
                 placeholder='Confirm your password'
+                {...register('confirmPassword', {
+                  required: true,
+                  minLength: 6,
+                })}
               />
             </div>
           </div>
@@ -72,6 +90,7 @@ const RegisterScreen = () => {
                 name='remember'
                 id='remember'
                 className='text-primary focus:ring-0 rounded-sm cursor-pointer'
+                {...register('remember')}
               />
               <label
                 htmlFor='remember'
