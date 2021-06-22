@@ -7,3 +7,4 @@ export { default as SocialIcons } from './SocialIcons';
 export { default as BreadCrumbs } from './BreadCrumbs';
 export { default as CartSummary } from './CartSummary';
 export { default as SectionTitle } from './SectionTitle';
+export { default as Loader } from './Loader';

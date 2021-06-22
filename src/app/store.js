@@ -1,13 +1,13 @@
 import logger from 'redux-logger';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import rootReducers from './reducers';
+import storage from './storage';
 
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist:['auth']
+  blacklist: ['auth/attemptSignup'],
 };
 
 const rootReducer = (state, action) => {
@@ -24,7 +24,7 @@ const reducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer,
-  middleware: [...getDefaultMiddleware(), logger],
+  middleware: [...getDefaultMiddleware({ serializableCheck: false }), logger],
 });
 
 export const persistor = persistStore(store);

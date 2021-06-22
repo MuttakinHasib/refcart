@@ -1,9 +1,38 @@
 import Link from 'next/link';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import Spinner from 'react-loader-spinner';
+import {
+  attemptFacebookSignIn,
+  attemptGoogleSignIn,
+  attemptLogin,
+} from '@features/auth/authActions';
 
 const LoginScreen = () => {
-  const [session, loading] = useSession();
-  console.log(session);
+  const dispatch = useDispatch();
+  const { handleSubmit, register } = useForm();
+
+  // Handle submit
+  const onSubmit = async data => {
+    try {
+      dispatch(attemptLogin(data));
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  // Handle Google Sign In
+  const googleSignInHandler = res => {
+    dispatch(attemptGoogleSignIn({ idToken: res.tokenId }));
+  };
+
+  // Handle Facebook Sign In
+  const facebookSignInHandler = res => {
+    const { accessToken, userID } = res;
+    dispatch(attemptFacebookSignIn({ accessToken, userID }));
+  };
 
   return (
     <div className='container py-16'>
@@ -12,7 +41,7 @@ const LoginScreen = () => {
         <p className='text-gray-600 mb-6 text-sm'>
           Login if you are a returning customer
         </p>
-        <form action=''>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className='space-y-4'>
             <div>
               <label htmlFor='email' className='text-gray-600 mb-2 block'>
@@ -24,6 +53,7 @@ const LoginScreen = () => {
                 id='email'
                 className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
                 placeholder='Enter your email address'
+                {...register('email', { required: true })}
               />
             </div>
             <div>
@@ -36,6 +66,7 @@ const LoginScreen = () => {
                 id='password'
                 className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
                 placeholder='Enter your password'
+                {...register('password', { required: true })}
               />
             </div>
           </div>
@@ -46,6 +77,7 @@ const LoginScreen = () => {
                 name='remember'
                 id='remember'
                 className='text-primary focus:ring-0 rounded-sm cursor-pointer'
+                {...register('remember')}
               />
               <label
                 htmlFor='remember'
@@ -74,26 +106,69 @@ const LoginScreen = () => {
           <div className='absolute w-full left-0 top-3 border-b-2 border-gray-200' />
         </div>
         <div className='flex flex-col sm:flex-row items-center gap-4 mt-6'>
-          <button
-            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
-            onClick={() => signIn('google')}
-          >
-            <img
-              className='w-7'
-              src='https://img.icons8.com/fluent/48/000000/google-logo.png'
-            />
-            <span>Google</span>
-          </button>
-          <button
-            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
-            onClick={() => signIn('facebook')}
-          >
-            <img
-              className='w-7'
-              src='https://img.icons8.com/fluent/48/000000/facebook-new.png'
-            />
-            <span>Facebook</span>
-          </button>
+          <GoogleLogin
+            clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+            buttonText='Login'
+            onSuccess={googleSignInHandler}
+            onFailure={googleSignInHandler}
+            cookiePolicy={'single_host_origin'}
+            render={props => (
+              <button
+                className={`w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300 ${
+                  props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                onClick={props.onClick}
+                disabled={props.disabled}
+              >
+                {props.disabled ? (
+                  <Spinner
+                    type='ThreeDots'
+                    color='#333'
+                    height={25}
+                    width={35}
+                  />
+                ) : (
+                  <>
+                    <img
+                      className='w-7'
+                      src='https://img.icons8.com/fluent/48/000000/google-logo.png'
+                    />
+                  </>
+                )}
+                <span>Google</span>
+              </button>
+            )}
+          />
+          <FacebookLogin
+            appId={process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID}
+            autoLoad={false}
+            fields='name,email,picture'
+            callback={facebookSignInHandler}
+            render={props => (
+              <button
+                className={`w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300 ${
+                  props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                onClick={props.onClick}
+                disabled={props.disabled}
+              >
+                {props.disabled ? (
+                  <Spinner
+                    type='ThreeDots'
+                    color='#333'
+                    height={25}
+                    width={35}
+                  />
+                ) : (
+                  <img
+                    className='w-7'
+                    src='https://img.icons8.com/fluent/48/000000/facebook-new.png'
+                  />
+                )}
+                <span>Facebook</span>
+              </button>
+            )}
+          />
         </div>
         <p className='mt-6 text-gray-600 text-center'>
           Don't have an account?{' '}

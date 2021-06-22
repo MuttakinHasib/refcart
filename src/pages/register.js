@@ -2,19 +2,23 @@ import Link from 'next/link';
 import { signIn } from 'next-auth/client';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { register as registerUser } from 'redux/slices/user/authSlice';
+import { attemptSignup } from '@features/auth/authActions';
+import { useSelector } from 'react-redux';
+import { Loader } from '@components/index';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
+  const { loading, success, message } = useSelector(state => state.auth);
   const { register, handleSubmit } = useForm();
   const onSubmit = async data => {
     if (data.password === data.confirmPassword) {
-      dispatch(registerUser(data));
+      dispatch(attemptSignup(data));
     }
   };
 
   return (
     <div className='container py-16'>
+      {loading && <Loader />}
       <div className='max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden'>
         <h2 className='text-2xl uppercase font-semibold mb-1'>
           Create an account
