@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { errorAlert, handleErrorMessage, successAlert } from '@utils/index';
+import { updateAuthUser } from '@features/auth/authSlice';
 
 const config = {
   headers: {
@@ -37,6 +38,32 @@ export const attemptChangePassword = createAsyncThunk(
       );
       errorAlert(data.error);
       successAlert(data.message);
+    } catch (err) {
+      errorAlert(handleErrorMessage(err));
+      return handleErrorMessage(err);
+    }
+  }
+);
+
+export const attemptGetUserProfile = createAsyncThunk(
+  'user/attemptGetUserProfile',
+  async (_, { dispatch, getState }) => {
+    try {
+      const { user } = getState().auth;
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/user/profile`, config);
+
+      errorAlert(data.error);
+      successAlert(data.message);
+      dispatch(updateAuthUser(data.user));
+      return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));
       return handleErrorMessage(err);

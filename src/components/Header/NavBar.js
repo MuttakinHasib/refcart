@@ -8,7 +8,7 @@ const NavBar = () => {
     <nav className='hidden md:block bg-gray-800'>
       <div className='container flex items-center'>
         {/* all categories */}
-        <div className='px-8 py-4 flex items-center bg-white text-black cursor-pointer relative group'>
+        <div className='px-8 py-4 flex items-center bg-white text-black border-t border-b border-gray-800 cursor-pointer relative group'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'

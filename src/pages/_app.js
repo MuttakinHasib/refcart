@@ -4,7 +4,6 @@ import { Toaster } from 'react-hot-toast';
 import { Layout } from '@components/index';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import { Provider as AuthProvider } from 'next-auth/client';
 
 import '../styles/globals.css';
 import { persistor, store } from 'app/store';
@@ -15,18 +14,16 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider {...{ store }}>
       <PersistGate loading={null} {...{ persistor }}>
-        <AuthProvider session={pageProps.session}>
-          <Elements stripe={stripePromise}>
-            <Toaster
-              position='top-right'
-              reverseOrder={false}
-              // toastOptions={{ style: { marginTop: '4.5rem' } }}
-            />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </Elements>
-        </AuthProvider>
+        <Elements stripe={stripePromise}>
+          <Toaster
+            position='top-right'
+            reverseOrder={false}
+            // toastOptions={{ style: { marginTop: '4.5rem' } }}
+          />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Elements>
       </PersistGate>
     </Provider>
   );

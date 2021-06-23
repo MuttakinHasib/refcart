@@ -1,6 +1,16 @@
 import { Button } from '@components/index';
+import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 const ProfileInformationScreen = () => {
+  // const
+  const { user } = useSelector(state => state.auth);
+  const { handleSubmit, register } = useForm();
+
+  const onSubmit = async data => {
+    try {
+    } catch (err) {}
+  };
   return (
     <>
       <div className='flex items-center pb-4 mb-5 justify-between border-b border-gray-100'>
@@ -9,7 +19,7 @@ const ProfileInformationScreen = () => {
         </h2>
         <button className='py-2 px-4 bg-primary text-white'>Edit</button>
       </div>
-      <form action='' className='space-y-5'>
+      <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
         <div className='flex flex-col md:flex-row items-center gap-5'>
           <div className='w-full'>
             <label htmlFor='name' className='text-gray-600 mb-2 block'>
@@ -20,6 +30,7 @@ const ProfileInformationScreen = () => {
               type='text'
               name='name'
               id='name'
+              defaultValue={user.name || ''}
               className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
               placeholder='Enter full name'
             />
@@ -33,6 +44,7 @@ const ProfileInformationScreen = () => {
               type='email'
               name='email'
               id='email'
+              defaultValue={user.email || ''}
               className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
               placeholder='example@mail.com'
             />
@@ -40,14 +52,15 @@ const ProfileInformationScreen = () => {
         </div>
         <div className='flex flex-col md:flex-row items-center gap-5'>
           <div className='w-full'>
-            <label htmlFor='dob' className='text-gray-600 mb-2 block'>
+            <label htmlFor='birthday' className='text-gray-600 mb-2 block'>
               Birthday
             </label>
             <input
               required
               type='date'
-              name='dob'
-              id='dob'
+              name='birthday'
+              id='birthday'
+              defaultValue={user.birthday || ''}
               className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
               placeholder='Enter birthday'
             />
@@ -59,6 +72,7 @@ const ProfileInformationScreen = () => {
             <select
               name='gender'
               id='gender'
+              defaultValue={user.gender || ''}
               className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
             >
               <option>Select gender</option>
@@ -77,6 +91,7 @@ const ProfileInformationScreen = () => {
               type='text'
               name='phone'
               id='phone'
+              defaultValue={user.phone || ''}
               className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
               placeholder='Enter phone number'
             />
@@ -88,6 +103,7 @@ const ProfileInformationScreen = () => {
             <select
               name='country'
               id='country'
+              defaultValue={user.country || ''}
               className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
             >
               <option>Select country</option>

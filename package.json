@@ -41,7 +41,8 @@
     "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "stripe": "^8.154.0",
-    "swiper": "^5.3.6"
+    "swiper": "^5.3.6",
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",

@@ -41,6 +41,7 @@ specifiers:
   stripe: ^8.154.0
   swiper: ^5.3.6
   tailwindcss: ^2.2.0
+  util: ^0.12.4
 
 dependencies:
   '@headlessui/react': 1.2.0_react@17.0.2
@@ -77,6 +78,7 @@ dependencies:
   slick-carousel: 1.8.1
   stripe: 8.156.0
   swiper: 5.4.5
+  util: 0.12.4
 
 devDependencies:
   autoprefixer: 10.2.6_postcss@8.3.5
@@ -4734,6 +4736,17 @@ packages:
 
   /util/0.12.3:
     resolution: {integrity: sha512-I8XkoQwE+fPQEhy9v012V+TSdH2kp9ts29i20TaaDUXsg7x/onePbhFJUExBfv/2ay1ZOp/Vsm3nDlmnFGSAog==}
+    dependencies:
+      inherits: 2.0.4
+      is-arguments: 1.1.0
+      is-generator-function: 1.0.9
+      is-typed-array: 1.1.5
+      safe-buffer: 5.2.1
+      which-typed-array: 1.1.4
+    dev: false
+
+  /util/0.12.4:
+    resolution: {integrity: sha512-bxZ9qtSlGUWSOy9Qa9Xgk11kSslpuZwaxCg4sNIDj6FLucDab2JxnHwyNTCpHMtK1MjoQiWQ6DiUMZYbSrO+Sw==}
     dependencies:
       inherits: 2.0.4
       is-arguments: 1.1.0
