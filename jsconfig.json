@@ -6,6 +6,7 @@
       "@components/*": ["components/*"],
       "@configs/*": ["configs/*"],
       "@features/*": ["features/*"],
+      "@hoc/*": ["hoc/*"],
       "@models/*": ["models/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"]

@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { attemptActivation, attemptLogin, attemptSignup } from './authActions';
+import {
+  attemptActivation,
+  attemptFacebookSignIn,
+  attemptGoogleSignIn,
+  attemptLogin,
+  attemptSignup,
+} from './authActions';
 
 const initialState = {
   loading: false,
@@ -49,6 +55,32 @@ const authSlice = createSlice({
         state.error = payload.error;
       })
       .addCase(attemptLogin.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(attemptGoogleSignIn.pending, state => {
+        state.loading = true;
+      })
+      .addCase(attemptGoogleSignIn.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.user = payload.user;
+        state.error = payload.error;
+      })
+      .addCase(attemptGoogleSignIn.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(attemptFacebookSignIn.pending, state => {
+        state.loading = true;
+      })
+      .addCase(attemptFacebookSignIn.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.user = payload.user;
+        state.error = payload.error;
+      })
+      .addCase(attemptFacebookSignIn.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

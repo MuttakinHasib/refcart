@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { navLinks, categories } from '@configs/static';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+  const { user } = useSelector(state => state.auth);
   return (
     <nav className='hidden md:block bg-gray-800'>
       <div className='container flex items-center'>
@@ -51,11 +53,26 @@ const NavBar = () => {
               </Link>
             ))}
           </div>
-          <Link href='/login'>
-            <a className='text-gray-200 hover:text-white transition'>
-              Login / Register
-            </a>
-          </Link>
+          {user ? (
+            <button className='flex items-center gap-3 focus:outline-none group transition'>
+              <div className='border-2 border-white border-dashed p-1 rounded-full'>
+                <img
+                  src={user.avatar}
+                  alt=''
+                  className='rounded-full w-8 h-8'
+                />
+              </div>
+              <h3 className='group-hover:text-white text-base font-medium text-gray-200 transition'>
+                {user.name}
+              </h3>
+            </button>
+          ) : (
+            <Link href='/login'>
+              <a className='text-gray-200 hover:text-white transition'>
+                Login / Register
+              </a>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

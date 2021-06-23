@@ -5,11 +5,14 @@ import { Transition } from '@headlessui/react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { MenuIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { withAuthRoute } from '@hoc/withAuthRoute';
 
 const AccountScreenLayout = ({ children }) => {
+  const { user } = useSelector(state => state.auth);
   const isLargeDevice = useMediaQuery('only screen and (min-width: 992px)');
   const [isOpen, setIsOpen] = useState(isLargeDevice);
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
 
   const paths = pathname.split('/');
   if (paths) {
@@ -78,4 +81,4 @@ const AccountScreenLayout = ({ children }) => {
   );
 };
 
-export default AccountScreenLayout;
+export default withAuthRoute(AccountScreenLayout);
