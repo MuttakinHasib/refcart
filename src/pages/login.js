@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
@@ -11,18 +10,13 @@ import {
   attemptGoogleSignIn,
   attemptLogin,
 } from '@features/auth/authActions';
+import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
   const { user } = useSelector(state => state.auth);
   const { handleSubmit, register } = useForm();
-
-  useEffect(() => {
-    if (user) {
-      push('/');
-    }
-  }, [user]);
 
   // Handle submit
   const onSubmit = async data => {
@@ -191,4 +185,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default withAuthRedirect(LoginScreen);
