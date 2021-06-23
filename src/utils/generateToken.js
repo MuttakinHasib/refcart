@@ -13,3 +13,10 @@ export const generateActivationToken = payload => {
 export const generateIdToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
+
+/**
+ * @param  {String} id
+ */
+export const resetPasswordIdToken = id => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '5m' });
+};

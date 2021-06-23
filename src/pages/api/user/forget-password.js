@@ -1,6 +1,6 @@
 import User from '@models/User';
 import connectDB from '@utils/connectDB';
-import { generateIdToken } from '@utils/generateToken';
+import { resetPasswordIdToken } from '@utils/generateToken';
 import { sendPasswordResetEmail } from '@utils/mailer';
 
 export default async (req, res) => {
@@ -17,9 +17,9 @@ export default async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const url = `${process.env.CLIENT_URL}/change-password/${generateIdToken(
-      user._id
-    )}`;
+    const url = `${
+      process.env.CLIENT_URL
+    }/change-password/${resetPasswordIdToken(user._id)}`;
 
     await sendPasswordResetEmail(email, url);
     return res.status(200).json({
