@@ -1,5 +1,6 @@
 import User from '@models/User';
 import connectDB from '@utils/connectDB';
+import { generateIdToken } from '@utils/generateToken';
 import { google } from 'googleapis';
 
 const { OAuth2 } = google.auth;

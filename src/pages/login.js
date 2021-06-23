@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Spinner from 'react-loader-spinner';
 import {
   attemptFacebookSignIn,
@@ -14,8 +13,6 @@ import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
 const LoginScreen = () => {
   const dispatch = useDispatch();
-  const { push } = useRouter();
-  const { user } = useSelector(state => state.auth);
   const { handleSubmit, register } = useForm();
 
   // Handle submit
@@ -74,8 +71,8 @@ const LoginScreen = () => {
               />
             </div>
           </div>
-          <div className='flex items-center justify-between mt-6'>
-            <div className='flex items-center gap-2'>
+          <div className='flex items-center justify-end mt-6'>
+            {/* <div className='flex items-center gap-2'>
               <input
                 type='checkbox'
                 name='remember'
@@ -89,7 +86,7 @@ const LoginScreen = () => {
               >
                 Remember me
               </label>
-            </div>
+            </div> */}
             <Link href='/forget-password'>
               <a className='text-primary'>Forget password</a>
             </Link>

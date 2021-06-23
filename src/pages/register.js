@@ -1,19 +1,41 @@
 import Link from 'next/link';
-import { signIn } from 'next-auth/client';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { attemptSignup } from '@features/auth/authActions';
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import { useSelector } from 'react-redux';
+import Spinner from 'react-loader-spinner';
 import { Loader } from '@components/index';
+import {
+  attemptSignup,
+  attemptFacebookSignIn,
+  attemptGoogleSignIn,
+} from '@features/auth/authActions';
+import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
 const RegisterScreen = () => {
   const dispatch = useDispatch();
   const { loading, success, message } = useSelector(state => state.auth);
   const { register, handleSubmit } = useForm();
+
+  // Handle submit
   const onSubmit = async data => {
-    if (data.password === data.confirmPassword) {
+    try {
       dispatch(attemptSignup(data));
+    } catch (err) {
+      console.error(err.message);
     }
+  };
+
+  // Handle Google Sign In
+  const googleSignInHandler = res => {
+    dispatch(attemptGoogleSignIn({ idToken: res.tokenId }));
+  };
+
+  // Handle Facebook Sign In
+  const facebookSignInHandler = res => {
+    const { accessToken, userID } = res;
+    dispatch(attemptFacebookSignIn({ accessToken, userID }));
   };
 
   return (
@@ -87,7 +109,7 @@ const RegisterScreen = () => {
               />
             </div>
           </div>
-          <div className='flex items-center justify-between mt-6'>
+          {/* <div className='flex items-center justify-between mt-6'>
             <div className='flex items-center gap-2'>
               <input
                 type='checkbox'
@@ -103,7 +125,7 @@ const RegisterScreen = () => {
                 Remember me
               </label>
             </div>
-          </div>
+          </div> */}
           <div className='mt-4'>
             <button
               type='submit'
@@ -120,26 +142,69 @@ const RegisterScreen = () => {
           <div className='absolute w-full left-0 top-3 border-b-2 border-gray-200' />
         </div>
         <div className='flex flex-col sm:flex-row items-center gap-4 mt-6'>
-          <button
-            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
-            onClick={() => signIn('google')}
-          >
-            <img
-              className='w-7'
-              src='https://img.icons8.com/fluent/48/000000/google-logo.png'
-            />
-            <span>Google</span>
-          </button>
-          <button
-            className='w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300'
-            onClick={() => signIn('facebook')}
-          >
-            <img
-              className='w-7'
-              src='https://img.icons8.com/fluent/48/000000/facebook-new.png'
-            />
-            <span>Facebook</span>
-          </button>
+          <GoogleLogin
+            clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+            buttonText='Login'
+            onSuccess={googleSignInHandler}
+            onFailure={googleSignInHandler}
+            cookiePolicy={'single_host_origin'}
+            render={props => (
+              <button
+                className={`w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300 ${
+                  props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                onClick={props.onClick}
+                disabled={props.disabled}
+              >
+                {props.disabled ? (
+                  <Spinner
+                    type='ThreeDots'
+                    color='#333'
+                    height={25}
+                    width={35}
+                  />
+                ) : (
+                  <>
+                    <img
+                      className='w-7'
+                      src='https://img.icons8.com/fluent/48/000000/google-logo.png'
+                    />
+                  </>
+                )}
+                <span>Google</span>
+              </button>
+            )}
+          />
+          <FacebookLogin
+            appId={process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID}
+            autoLoad={false}
+            fields='name,email,picture'
+            callback={facebookSignInHandler}
+            render={props => (
+              <button
+                className={`w-full focus:outline-none flex justify-center items-center gap-2 px-5 py-2 border-2 hover:bg-gray-50 text-gray-600 border-gray-100 rounded-md transition-colors duration-300 ${
+                  props.disabled ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                onClick={props.onClick}
+                disabled={props.disabled}
+              >
+                {props.disabled ? (
+                  <Spinner
+                    type='ThreeDots'
+                    color='#333'
+                    height={25}
+                    width={35}
+                  />
+                ) : (
+                  <img
+                    className='w-7'
+                    src='https://img.icons8.com/fluent/48/000000/facebook-new.png'
+                  />
+                )}
+                <span>Facebook</span>
+              </button>
+            )}
+          />
         </div>
         <p className='mt-6 text-gray-600 text-center'>
           Already have an account?{' '}
@@ -152,4 +217,4 @@ const RegisterScreen = () => {
   );
 };
 
-export default RegisterScreen;
+export default withAuthRedirect(RegisterScreen);

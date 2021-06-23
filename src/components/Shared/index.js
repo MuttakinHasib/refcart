@@ -8,3 +8,4 @@ export { default as BreadCrumbs } from './BreadCrumbs';
 export { default as CartSummary } from './CartSummary';
 export { default as SectionTitle } from './SectionTitle';
 export { default as Loader } from './Loader';
+export { default as RedirectLoader } from './RedirectLoader';

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Router from 'next/router';
-import { Loader } from '@components/index';
+import { RedirectLoader } from '@components/index';
 import { useSelector } from 'react-redux';
 
 export const withAdminRoute = Component => {
@@ -12,7 +12,7 @@ export const withAdminRoute = Component => {
         Router.push('/');
       }
     }, [user]);
-    return user ? <Component {...props} /> : <Loader />;
+    return user ? <Component {...props} /> : <RedirectLoader to='Home' />;
   };
   return RequireAuthentication;
 };

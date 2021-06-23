@@ -1,4 +1,4 @@
-import { GiftIcon, AdjustmentsIcon, HeartIcon } from '@heroicons/react/outline';
+import { GiftIcon, HeartIcon, IdentificationIcon } from '@heroicons/react/outline';
 import ActiveLink from './ActiveLink';
 
 const AccountSidebar = () => {
@@ -9,7 +9,7 @@ const AccountSidebar = () => {
           href='/account'
           className={'flex items-center gap-2 mt-4 mb-3'}
         >
-          <AdjustmentsIcon className='w-6' />
+          <IdentificationIcon className='w-6' />
           <h2 className='text-xl font-medium'>Manage My Account</h2>
         </ActiveLink>
         <div className='ml-8 flex flex-col gap-2'>
