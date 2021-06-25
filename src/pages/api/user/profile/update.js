@@ -1,7 +1,7 @@
 import User from '@models/User';
 import connectDB from '@utils/connectDB';
 import { generateIdToken } from '@utils/generateToken';
-import { withProtect } from 'middleware/withProtect';
+import { withProtect } from '@middleware/withProtect';
 
 const handler = async (req, res) => {
   try {
@@ -15,18 +15,15 @@ const handler = async (req, res) => {
       user.gender = req.body.gender || user.gender;
       user.birthday = req.body.birthday || user.birthday;
       user.phone = req.body.phone || user.phone;
-      user.country = req.body.country || user.country;
-      user.avatar = req.body.avatar || user.avatar;
-
-      if (req.body.newPassword) {
-        if (await user.matchPassword(req.body.oldPassword)) {
-          user.password = req.body.newPassword;
-        } else {
-          return res
-            .status(400)
-            .json({ error: 'Current password is incorrect' });
-        }
-      }
+      user.address = {
+        country: req.body.country || user.address.country,
+        division: req.body.division || user.address.division,
+        district: req.body.district || user.address.district,
+        upazila: req.body.upazila || user.address.upazila,
+        union: req.body.union || user.address.union,
+        postcode: req.body.postcode || user.address.postcode,
+        street: req.body.street || user.address.street,
+      };
 
       const updatedUser = await user.save();
       return res.json({
@@ -38,7 +35,7 @@ const handler = async (req, res) => {
           gender: updatedUser.gender || '',
           birthday: updatedUser.birthday || '',
           phone: updatedUser.phone || '',
-          country: updatedUser.country || '',
+          address: updatedUser.address || {},
           isAdmin: updatedUser.isAdmin,
           token: generateIdToken(updatedUser._id),
         },

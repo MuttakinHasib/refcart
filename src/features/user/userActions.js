@@ -70,3 +70,32 @@ export const attemptGetUserProfile = createAsyncThunk(
     }
   }
 );
+
+export const attemptUpdateProfile = createAsyncThunk(
+  'user/attemptUpdateProfile',
+  async (updatedData, { dispatch, getState }) => {
+    try {
+      const { user } = getState().auth;
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      const { data } = await axios.post(
+        `/api/user/profile/update`,
+        updatedData,
+        config
+      );
+      errorAlert(data.error);
+      successAlert(data.message);
+      dispatch(updateAuthUser(data.user));
+      return data;
+    } catch (err) {
+      errorAlert(handleErrorMessage(err));
+      return handleErrorMessage(err);
+    }
+  }
+);

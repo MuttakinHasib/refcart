@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import convertStartCase from 'lodash.startcase';
-import { AccountSidebar, BreadCrumbs } from '@components/index';
+import { AccountSidebar, BreadCrumbs, Loader } from '@components/index';
 import { Transition } from '@headlessui/react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { MenuIcon } from '@heroicons/react/solid';
@@ -8,11 +8,12 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import { attemptGetUserProfile } from '@features/user/userActions';
+import { attemptGetCountryData } from '@features/country/countryActions';
 
 const AccountScreenLayout = ({ children }) => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
-  const { user: userInfo } = useSelector(state => state.user);
+  const { user: userInfo, loading } = useSelector(state => state.user);
   const isLargeDevice = useMediaQuery('only screen and (min-width: 992px)');
   const [isOpen, setIsOpen] = useState(isLargeDevice);
   const { pathname } = useRouter();
@@ -33,10 +34,12 @@ const AccountScreenLayout = ({ children }) => {
 
   useEffect(() => {
     dispatch(attemptGetUserProfile());
+    dispatch(attemptGetCountryData());
   }, []);
 
   return (
     <>
+      {loading && <Loader />}
       <BreadCrumbs items={breadCrumbs} />
       <div className='relative container grid lg:grid-cols-12 gap-5 pb-16 items-start'>
         <div className='lg:col-span-3'>

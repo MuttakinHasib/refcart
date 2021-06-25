@@ -34,7 +34,30 @@ const userSchema = new Schema(
     country: {
       type: String,
     },
-    // address: {},
+    address: {
+      country: {
+        type: String,
+      },
+      division: {
+        type: String,
+      },
+      district: {
+        type: String,
+      },
+      upazila: {
+        type: String,
+      },
+      union: {
+        type: String,
+      },
+      postcode: {
+        type: String,
+      },
+      street: {
+        type: String,
+      },
+      default: {},
+    },
     isAdmin: {
       type: Boolean,
       default: false,

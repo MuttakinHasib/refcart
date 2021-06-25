@@ -3,6 +3,7 @@ import {
   attemptChangePassword,
   attemptGetUserProfile,
   attemptPasswordResetRequest,
+  attemptUpdateProfile,
 } from './userActions';
 
 const initialState = {
@@ -50,6 +51,18 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(attemptGetUserProfile.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(attemptUpdateProfile.pending, state => {
+        state.loading = true;
+      })
+      .addCase(attemptUpdateProfile.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user = payload.user;
+        state.error = null;
+      })
+      .addCase(attemptUpdateProfile.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

@@ -5,7 +5,7 @@ import {
   ShoppingBagIcon,
   UsersIcon,
 } from '@heroicons/react/outline';
-import Link from 'next/link';
+import AdminActiveLink from './AdminActiveLink';
 
 const Sidebar = () => {
   return (
@@ -14,36 +14,26 @@ const Sidebar = () => {
         Refcart
       </div>
       <div className='py-5'>
-        <Link href='/admin'>
-          <a className='flex gap-3 items-center my-1 px-4 py-3 text-white border-l-4 border-blue-600 bg-gray-900'>
-            <HomeIcon className='w-5' />
-            <span>Dashboard</span>
-          </a>
-        </Link>
-        <Link href='/admin/category'>
-          <a className='flex gap-3 items-center my-1 px-4 py-3 text-white border-l-4 border-transparent hover:border-blue-600 hover:bg-gray-900 transition duration-300'>
-            <CollectionIcon className='w-5' />
-            <span>Category</span>
-          </a>
-        </Link>
-        <Link href='/admin/products'>
-          <a className='flex gap-3 items-center my-1 px-4 py-3 text-white border-l-4 border-transparent hover:border-blue-600 hover:bg-gray-900 transition duration-300'>
-            <ShoppingBagIcon className='w-5' />
-            <span>Products</span>
-          </a>
-        </Link>
-        <Link href='/admin/orders'>
-          <a className='flex gap-3 items-center my-1 px-4 py-3 text-white border-l-4 border-transparent hover:border-blue-600 hover:bg-gray-900 transition duration-300'>
-            <ClipboardListIcon className='w-5' />
-            <span>Orders</span>
-          </a>
-        </Link>
-        <Link href='/admin/users'>
-          <a className='flex gap-3 items-center my-1 px-4 py-3 text-white border-l-4 border-transparent hover:border-blue-600 hover:bg-gray-900 transition duration-300'>
-            <UsersIcon className='w-5' />
-            <span>Users</span>
-          </a>
-        </Link>
+        <AdminActiveLink href='/admin/dashboard'>
+          <HomeIcon className='w-5' />
+          <span>Dashboard</span>
+        </AdminActiveLink>
+        <AdminActiveLink href='/admin/category'>
+          <CollectionIcon className='w-5' />
+          <span>Category</span>
+        </AdminActiveLink>
+        <AdminActiveLink href='/admin/products'>
+          <ShoppingBagIcon className='w-5' />
+          <span>Products</span>
+        </AdminActiveLink>
+        <AdminActiveLink href='/admin/orders'>
+          <ClipboardListIcon className='w-5' />
+          <span>Orders</span>
+        </AdminActiveLink>
+        <AdminActiveLink href='/admin/users'>
+          <UsersIcon className='w-5' />
+          <span>Users</span>
+        </AdminActiveLink>
       </div>
     </div>
   );

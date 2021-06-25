@@ -37,7 +37,7 @@ export default async (req, res) => {
           gender: user.gender || '',
           birthday: user.birthday || '',
           phone: user.phone || '',
-          country: user.country || '',
+          address: user.address || {},
           isAdmin: user.isAdmin,
           token: generateIdToken(user._id),
         },
