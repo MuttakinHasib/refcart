@@ -9,3 +9,4 @@ export { default as CartSummary } from './CartSummary';
 export { default as SectionTitle } from './SectionTitle';
 export { default as Loader } from './Loader';
 export { default as RedirectLoader } from './RedirectLoader';
+export { default as FileUploader } from './FileUploader';

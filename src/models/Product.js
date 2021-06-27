@@ -52,18 +52,22 @@ const productSchema = new Schema(
       required: true,
     },
     brand: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: 'Brand',
+      default: null,
     },
     warranty: {
       type: String,
       required: true,
       default: 'No warranty available',
     },
-    category: {
-      type: String,
-      required: true,
-    },
+    category: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Category',
+        default: null,
+      },
+    ],
     sku: {
       type: String,
       default: generate(),
@@ -93,10 +97,6 @@ const productSchema = new Schema(
       type: Number,
       required: true,
       default: 0,
-    },
-    isAdmin: {
-      type: Boolean,
-      default: false,
     },
   },
   { timestamps: true }

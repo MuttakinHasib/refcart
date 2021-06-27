@@ -3,6 +3,7 @@ import {
   CollectionIcon,
   HomeIcon,
   ShoppingBagIcon,
+  StarIcon,
   UsersIcon,
 } from '@heroicons/react/outline';
 import AdminActiveLink from './AdminActiveLink';
@@ -21,6 +22,10 @@ const Sidebar = () => {
         <AdminActiveLink href='/admin/category'>
           <CollectionIcon className='w-5' />
           <span>Category</span>
+        </AdminActiveLink>
+        <AdminActiveLink href='/admin/brands'>
+          <StarIcon className='w-5' />
+          <span>Brands</span>
         </AdminActiveLink>
         <AdminActiveLink href='/admin/products'>
           <ShoppingBagIcon className='w-5' />

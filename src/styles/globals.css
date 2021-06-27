@@ -66,6 +66,10 @@
   .shadow-box {
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
   }
+
+  input:focus {
+    @apply outline-none ring-0 !important;
+  }
 }
 
 .fileUploader {
