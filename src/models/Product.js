@@ -52,30 +52,34 @@ const productSchema = new Schema(
       required: true,
     },
     brand: {
-      type: Schema.Types.ObjectId,
-      ref: 'Brand',
-      default: null,
+      type: String,
     },
+    // brand: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Brand',
+    //   default: null,
+    // },
     warranty: {
       type: String,
       required: true,
       default: 'No warranty available',
     },
-    category: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Category',
-        default: null,
-      },
-    ],
+    // category: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Category',
+    //     default: null,
+    //   },
+    // ],
+    category: { type: Array },
     sku: {
       type: String,
       default: generate(),
     },
-    size: {
+    sizes: {
       type: Array,
     },
-    color: {
+    colors: {
       type: Array,
     },
     rating: {

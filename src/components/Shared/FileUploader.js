@@ -1,30 +1,34 @@
 import axios from 'axios';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Image } from 'cloudinary-react';
 import { useDropzone } from 'react-dropzone';
 
-const FileUploader = () => {
+const FileUploader = ({ title, setPictures }) => {
   const [uploadedFile, setUploadedFile] = useState([]);
   const onDrop = useCallback(acceptedFiles => {
     const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
 
     acceptedFiles.forEach(async acceptedFile => {
-      // const { signature, timestamp } = await getSignature();
+      const { signature, timestamp, folder } = await getSignature();
       const formData = new FormData();
       formData.append('file', acceptedFile);
-      formData.append('folder', 'refcart');
-      formData.append(
-        'upload_preset',
-        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      );
-      // formData.append('signature', signature);
-      // formData.append('timestamp', timestamp);
-      // formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
+      formData.append('folder', folder);
+      formData.append('signature', signature);
+      formData.append('timestamp', timestamp);
+      formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
 
       const { data } = await axios.post(url, formData);
-      setUploadedFile(prev => [...prev, data]);
+      setUploadedFile(prev => [
+        ...prev,
+        { url: data.secure_url, public_id: data.public_id },
+      ]);
     });
   }, []);
+
+  useEffect(() => {
+    setPictures(uploadedFile);
+  }, [uploadedFile]);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'image/*',
@@ -33,7 +37,7 @@ const FileUploader = () => {
 
   return (
     <div className='rounded p-8 bg-white'>
-      <h1 className='text-2xl text-gray-700 text-center'>Upload your files</h1>
+      <h1 className='text-2xl text-gray-700 text-center'>{title}</h1>
       <p className='text-xs mt-3 font-light text-gray-500 text-center'>
         File should be PNG, JPEG or JPG
       </p>
@@ -68,6 +72,6 @@ export default FileUploader;
 
 const getSignature = async () => {
   const { data } = await axios.get('/api/cloudinary/sign');
-  const { signature, timestamp } = data;
-  return { signature, timestamp };
+  const { signature, timestamp, folder } = data;
+  return { signature, timestamp, folder };
 };
