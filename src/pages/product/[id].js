@@ -8,10 +8,12 @@ import {
   QuantityButton,
 } from '@components/index';
 import { Facebook, Twitter } from '@icons-pack/react-simple-icons';
-import { product } from '@configs/static';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useQuery } from 'react-query';
+import { getProductById } from '@utils/api';
+import { useRouter } from 'next/router';
 
 const settings = {
   dots: true,
@@ -44,6 +46,16 @@ const settings = {
 const ProductDetails = () => {
   const original = useRef(null);
   const thumbnail = useRef(null);
+  const { query } = useRouter();
+  const { id } = query;
+  const { data: product, isLoading } = useQuery(
+    ['product', { id }],
+    getProductById
+  );
+
+  if (isLoading) {
+    return <h1>Loading</h1>;
+  }
 
   return (
     <>
@@ -60,7 +72,13 @@ const ProductDetails = () => {
           >
             {product.images.map((image, index) => (
               <div key={index} className='focus:outline-none px-2 md:p-3'>
-                <Image src={image} alt='' width={1080} height={800} priority />
+                <Image
+                  src={image.url}
+                  alt=''
+                  width={1080}
+                  height={800}
+                  priority
+                />
               </div>
             ))}
           </Slider>
@@ -79,7 +97,7 @@ const ProductDetails = () => {
                 >
                   <Image
                     className='thumb-img'
-                    src={image}
+                    src={image.url}
                     alt=''
                     width={1080}
                     height={800}

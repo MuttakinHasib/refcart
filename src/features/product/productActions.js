@@ -16,6 +16,22 @@ export const attemptGetProducts = createAsyncThunk(
       const { data } = await axios.get(`/api/product`, config);
       errorAlert(data.error);
       successAlert(data.message);
+      return data;
+    } catch (err) {
+      errorAlert(handleErrorMessage(err));
+      return handleErrorMessage(err);
+    }
+  }
+);
+
+export const attemptGetProductById = createAsyncThunk(
+  'user/attemptGetProductById',
+  async id => {
+    try {
+      const { data } = await axios.get(`/api/product/${id}`, config);
+      errorAlert(data.error);
+      successAlert(data.message);
+      return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));
       return handleErrorMessage(err);
@@ -25,7 +41,7 @@ export const attemptGetProducts = createAsyncThunk(
 
 export const attemptCreateProduct = createAsyncThunk(
   'user/attemptCreateProduct',
-  async (productData, { dispatch, getState }) => {
+  async (productData, { getState }) => {
     try {
       const { user } = getState().auth;
 

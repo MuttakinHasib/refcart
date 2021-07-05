@@ -1,31 +1,35 @@
-import { Slider } from '@components/index';
+import { Loader, Slider } from '@components/index';
 import {
   Category,
   Feature,
   ProductWrapper,
 } from '@components/HomePage/Sections';
-import { API_URL } from '@configs/index';
+import { getAllProducts } from '@utils/api';
+import { useQuery } from 'react-query';
 
-const HomeScreen = () => {
+const HomeScreen = props => {
+  const { data: products, isLoading } = useQuery('products', getAllProducts, {
+    initialData: props.products,
+  });
   return (
     <>
+      {isLoading && <Loader />}
       <Slider />
       <Feature />
       <Category />
-      <ProductWrapper />
+      <ProductWrapper {...{ products }} />
     </>
   );
 };
 
-// export const getServerSideProps = async () => {
-//   const res = await fetch(`${API_URL}/products`);
-//   const products = await res.json();
+export const getServerSideProps = async () => {
+  const products = await getAllProducts();
 
-//   return {
-//     props: {
-//       products,
-//     },
-//   };
-// };
+  return {
+    props: {
+      products,
+    },
+  };
+};
 
 export default HomeScreen;

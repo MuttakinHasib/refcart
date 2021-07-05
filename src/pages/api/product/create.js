@@ -6,7 +6,7 @@ import connectDB from '@utils/connectDB';
 const handler = async (req, res) => {
   const {
     title,
-    image,
+    images,
     description,
     brand,
     category,
@@ -24,13 +24,11 @@ const handler = async (req, res) => {
     const product = new Product({
       user: req.user._id,
       title,
-      image,
+      images,
       description,
       brand,
-      category: {
-        name: category,
-      },
-      warranty,
+      category,
+      warranty: warranty || undefined,
       sizes,
       colors,
       price,

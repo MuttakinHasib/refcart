@@ -7,9 +7,17 @@ import { attemptCreateProduct } from '@features/product/productActions';
 import { useDispatch } from 'react-redux';
 
 const customStyles = {
-  control: style => ({
-    ...style,
+  control: (
+    { borderColor, backgroundColor, boxShadow, ...provided },
+    { theme }
+  ) => ({
+    ...provided,
     width: '100%',
+    backgroundColor: 'rgba(243, 244, 246, 1)',
+    borderColor: theme.colors.neutral0,
+    '&:hover': {
+      borderColor: theme.colors.neutral70,
+    },
   }),
   valueContainer: style => ({
     ...style,
@@ -30,7 +38,7 @@ const customStyles = {
 const CreateProductScreen = () => {
   const dispatch = useDispatch();
   const { handleSubmit, register } = useForm();
-  const [pictures, setPictures] = useState([]);
+  const [images, setPictures] = useState([]);
   const [brand, setBrand] = useState(null);
   const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
@@ -57,7 +65,7 @@ const CreateProductScreen = () => {
     }
   };
   const handleCategoryChange = (newValue, actionMeta) => {
-    newValue.map(value => setCategory([...category, value.label]));
+    newValue.map(value => setCategory([...category, { name: value.label }]));
     if (actionMeta.action === 'clear') {
       setCategory([]);
     }
@@ -69,7 +77,7 @@ const CreateProductScreen = () => {
       dispatch(
         attemptCreateProduct({
           ...data,
-          pictures,
+          images,
           brand,
           category,
           sizes,

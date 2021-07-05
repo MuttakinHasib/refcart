@@ -4,12 +4,8 @@ const ProductItem = ({ product }) => {
   return (
     <div className='bg-white shadow rounded overflow-hidden group'>
       <div className='relative'>
-        <img
-          src={product?.image?.formats?.thumbnail?.url || product.image}
-          alt=''
-          className='w-full'
-        />
-        <Link href={`/product/${product.id}`}>
+        <img src={product.images[0].url} alt='' className='w-full' />
+        <Link href={`/product/${product._id}`}>
           <a className='opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 transition duration-300 cursor-pointer'>
             {/* <a
               href='#'
@@ -54,7 +50,7 @@ const ProductItem = ({ product }) => {
       </div>
 
       <div className='pt-4 pb-3 px-4'>
-        <Link href={`/product/${product.id}`}>
+        <Link href={`/product/${product._id}`}>
           <a>
             <h3 className='uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition'>
               {product.title}
@@ -64,7 +60,7 @@ const ProductItem = ({ product }) => {
         <div className='flex items-baseline mb-1 space-x-2 font-roboto'>
           <p className='text-primary text-lg font-semibold'>${product.price}</p>
           <p className='text-gray-500 font-light text-sm line-through'>
-            ${product.lessPrice}
+            {/* ${product.lessPrice} */}
           </p>
         </div>
         <div className='flex items-center'>

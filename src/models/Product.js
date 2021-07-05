@@ -41,11 +41,12 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
-    image: {
+    images: {
       type: Array,
       required: true,
-      default:
-        'https://res.cloudinary.com/muttakinhasib/image/upload/v1618421868/products/woocommerce-placeholder-600x600_rnyd9c.png',
+      default: {
+        url: 'https://res.cloudinary.com/muttakinhasib/image/upload/v1618421868/products/woocommerce-placeholder-600x600_rnyd9c.png',
+      },
     },
     description: {
       type: String,
