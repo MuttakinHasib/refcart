@@ -8,6 +8,7 @@ const handler = async (req, res) => {
     title,
     images,
     description,
+    meta_description,
     brand,
     category,
     warranty,
@@ -26,6 +27,7 @@ const handler = async (req, res) => {
       title,
       images,
       description,
+      meta_description,
       brand,
       category,
       warranty: warranty || undefined,
@@ -38,6 +40,7 @@ const handler = async (req, res) => {
     // Save product into database
 
     const createdProduct = await product.save();
+    
     if (createdProduct) {
       return res.status(201).json({ message: 'Product created successfully' });
     } else {

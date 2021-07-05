@@ -45,8 +45,13 @@ const productSchema = new Schema(
       type: Array,
       required: true,
       default: {
-        url: 'https://res.cloudinary.com/muttakinhasib/image/upload/v1618421868/products/woocommerce-placeholder-600x600_rnyd9c.png',
+        secure_url:
+          'https://res.cloudinary.com/muttakinhasib/image/upload/v1618421868/products/woocommerce-placeholder-600x600_rnyd9c.png',
       },
+    },
+    meta_description: {
+      type: String,
+      required: true,
     },
     description: {
       type: String,
@@ -96,6 +101,10 @@ const productSchema = new Schema(
     price: {
       type: Number,
       required: true,
+      default: 0,
+    },
+    discount: {
+      type: Number,
       default: 0,
     },
     countInStock: {

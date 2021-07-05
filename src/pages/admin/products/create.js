@@ -117,6 +117,24 @@ const CreateProductScreen = () => {
                 </div>
                 <div className='w-full'>
                   <label
+                    htmlFor='meta_description'
+                    className='text-gray-600 mb-2 block'
+                  >
+                    Meta Description
+                  </label>
+                  <textarea
+                    required
+                    type='text'
+                    name='meta_description'
+                    id='meta_description'
+                    rows='3'
+                    className={`bg-gray-100 block w-full border border-transparent px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400`}
+                    placeholder='Enter meta description'
+                    {...register('meta_description', { required: true })}
+                  />
+                </div>
+                <div className='w-full'>
+                  <label
                     htmlFor='description'
                     className='text-gray-600 mb-2 block'
                   >
@@ -133,23 +151,23 @@ const CreateProductScreen = () => {
                     {...register('description', { required: true })}
                   />
                 </div>
-                <div className='w-full'>
-                  <label
-                    htmlFor='warranty'
-                    className='text-gray-600 mb-2 block'
-                  >
-                    Warranty
-                  </label>
-                  <input
-                    type='text'
-                    name='warranty'
-                    id='warranty'
-                    className='bg-gray-100 block w-full border border-transparent px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
-                    placeholder='Enter product warranty'
-                    {...register('warranty')}
-                  />
-                </div>
                 <div className='flex flex-col lg:flex-row items-center gap-5'>
+                  <div className='w-full'>
+                    <label
+                      htmlFor='warranty'
+                      className='text-gray-600 mb-2 block'
+                    >
+                      Warranty
+                    </label>
+                    <input
+                      type='text'
+                      name='warranty'
+                      id='warranty'
+                      className='bg-gray-100 block w-full border border-transparent px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
+                      placeholder='Enter product warranty'
+                      {...register('warranty')}
+                    />
+                  </div>
                   <div className='w-full'>
                     <label htmlFor='price' className='text-gray-600 mb-2 block'>
                       Price
@@ -162,6 +180,24 @@ const CreateProductScreen = () => {
                       className='bg-gray-100 block w-full border border-transparent px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
                       placeholder='Enter product price'
                       {...register('price', { required: true })}
+                    />
+                  </div>
+                </div>
+                <div className='flex flex-col lg:flex-row items-center gap-5'>
+                  <div className='w-full'>
+                    <label
+                      htmlFor='discount'
+                      className='text-gray-600 mb-2 block'
+                    >
+                      Discount Price
+                    </label>
+                    <input
+                      type='text'
+                      name='discount'
+                      id='discount'
+                      className='bg-gray-100 block w-full border border-transparent px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
+                      placeholder='Enter product discount'
+                      {...register('discount')}
                     />
                   </div>
                   <div className='w-full'>

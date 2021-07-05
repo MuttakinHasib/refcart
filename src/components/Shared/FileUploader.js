@@ -18,10 +18,8 @@ const FileUploader = ({ title, setPictures }) => {
       formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
 
       const { data } = await axios.post(url, formData);
-      setUploadedFile(prev => [
-        ...prev,
-        { url: data.secure_url, public_id: data.public_id },
-      ]);
+      console.log(data);
+      setUploadedFile(prev => [...prev, data]);
     });
   }, []);
 

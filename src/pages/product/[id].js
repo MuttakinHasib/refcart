@@ -6,6 +6,7 @@ import {
   ProductColor,
   ProductSize,
   QuantityButton,
+  ProductDetailsSkeleton,
 } from '@components/index';
 import { Facebook, Twitter } from '@icons-pack/react-simple-icons';
 
@@ -54,12 +55,12 @@ const ProductDetails = () => {
   );
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return <ProductDetailsSkeleton />;
   }
 
   return (
     <>
-      <BreadCrumbs items={[{ title: 'Shop', href: '/shop' }, 'Something']} />
+      <BreadCrumbs items={[{ title: 'Shop', href: '/shop' }, product.title]} />
 
       <div className='container grid grid-cols-1 lg:grid-cols-2 gap-8'>
         <div>
@@ -73,10 +74,10 @@ const ProductDetails = () => {
             {product.images.map((image, index) => (
               <div key={index} className='focus:outline-none px-2 md:p-3'>
                 <Image
-                  src={image.url}
+                  src={image.secure_url}
                   alt=''
-                  width={1080}
-                  height={800}
+                  width={image.width}
+                  height={image.height}
                   priority
                 />
               </div>
@@ -97,10 +98,10 @@ const ProductDetails = () => {
                 >
                   <Image
                     className='thumb-img'
-                    src={image.url}
+                    src={image.secure_url}
                     alt=''
-                    width={1080}
-                    height={800}
+                    width={image.width}
+                    height={image.height}
                     priority
                   />
                 </div>
@@ -110,7 +111,7 @@ const ProductDetails = () => {
         </div>
         <div>
           <h2 className='text-2xl md:text-3xl font-medium uppercase mb-2'>
-            Italian L shape sofa
+            {product.title}
           </h2>
           <div className='flex items-center mb-4'>
             <div className='flex gap-1 text-yellow-400'>
@@ -160,48 +161,61 @@ const ProductDetails = () => {
           <div className='space-y-2'>
             <p className='text-gray-800 font-semibold space-x-2'>
               <span>Availability:</span>
-              <span className='text-green-600'>In Stock</span>
+              {product.countInStock > 0 ? (
+                <span className='text-green-600'>In Stock</span>
+              ) : (
+                <span className='text-red-600'>Stock out</span>
+              )}
             </p>
             <p className='space-x-2'>
               <span className='text-gray-800 font-semibold'>Brand:</span>
-              <span className='text-gray-600'>Apex</span>
+              <span className='text-gray-600'>{product.brand}</span>
             </p>
-            <p className='space-x-2'>
-              <span className='text-gray-800 font-semibold'>Category:</span>
-              <span className='text-gray-600'>Sofa</span>
-            </p>
+            {product.category.length > 0 && (
+              <p className='flex items-center gap-2'>
+                <span className='text-gray-800 font-semibold'>Category:</span>
+                <div className='flex items-center gap-5'>
+                  {product.category.map(({ name }, index) => (
+                    <span key={index} className='text-gray-600'>
+                      {name}
+                    </span>
+                  ))}
+                </div>
+              </p>
+            )}
             <p className='space-x-2'>
               <span className='text-gray-800 font-semibold'>SKU:</span>
-              <span className='text-gray-600'>BE4TEF8</span>
+              <span className='text-gray-600 uppercase'>{product.sku}</span>
             </p>
           </div>
           <div className='flex items-baseline mt-4 mb-1 space-x-2 font-roboto'>
-            <p className='text-primary text-2xl font-semibold'>$44.5</p>
-            <p className='text-gray-500 font-base text-sm line-through'>
-              $55.3
+            <p className='text-primary text-2xl font-semibold'>
+              ${product.price}
             </p>
+            {product.discount && (
+              <p className='text-gray-500 font-base text-sm line-through'>
+                ${product.discount}
+              </p>
+            )}
           </div>
-          <p className='mt-4 text-gray-600'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque
-            voluptatum esse optio eligendi rerum blanditiis.
-          </p>
+          <p className='mt-4 text-gray-600'>{product.meta_description}</p>
 
-          {/* Size */}
-          <div className='pt-4'>
-            <h2 className='text-lg text-gray-800 mb-3 uppercase font-medium'>
-              Size
-            </h2>
-            <ProductSize />
-          </div>
-          {/* Color */}
-          <div className='pt-4'>
-            <h2 className='text-lg text-gray-800 mb-3 uppercase font-medium'>
-              Color
-            </h2>
-            <ProductColor />
-          </div>
-          {/* Color End */}
-
+          {product.sizes.length > 0 && (
+            <div className='pt-4'>
+              <h2 className='text-lg text-gray-800 mb-3 uppercase font-medium'>
+                Size
+              </h2>
+              <ProductSize sizes={product.sizes} />
+            </div>
+          )}
+          {product.colors.length > 0 && (
+            <div className='pt-4'>
+              <h2 className='text-lg text-gray-800 mb-3 uppercase font-medium'>
+                Color
+              </h2>
+              <ProductColor colors={product.colors} />
+            </div>
+          )}
           {/* Quantity */}
           <div className='py-4'>
             <h2 className='text-lg text-gray-800 mb-3 tracking-wider font-medium'>
@@ -268,37 +282,44 @@ const ProductDetails = () => {
           Product Details
         </h3>
         <div className='w-full md:w-3/5 pt-6'>
-          <p className='text-gray-600'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-            inventore illum excepturi hic vero quod ullam possimus neque maxime
-            voluptatum labore, illo, repellat architecto ipsum laborum facere
-            sequi! Dolor, cumque eligendi sunt dicta provident rerum quisquam
-            similique molestias saepe nobis consectetur, deleniti corrupti
-            pariatur mollitia iure exercitationem assumenda numquam dolorem?
-          </p>
+          <p className='text-gray-600'>{product.description}</p>
           <table className='table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6'>
             <tr>
               <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
                 Color
               </th>
               <td className='py-2 px-4 border border-gray-300'>
-                Black, Brown, Red
+                <div className='flex items-center gap-3'>
+                  {product.colors.map((color, index) => (
+                    <div
+                      key={index}
+                      className={`border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center shadow-sm cursor-pointer`}
+                      style={{ backgroundColor: `${color}` }}
+                    />
+                  ))}
+                </div>
               </td>
             </tr>
-            <tr>
-              <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
-                Material
-              </th>
-              <td className='py-2 px-4 border border-gray-300'>
-                Artificial Leather
-              </td>
-            </tr>
-            <tr>
-              <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
-                Weight
-              </th>
-              <td className='py-2 px-4 border border-gray-300'>55kg</td>
-            </tr>
+            {product.material && (
+              <tr>
+                <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
+                  Material
+                </th>
+                <td className='py-2 px-4 border border-gray-300'>
+                  {product.material}
+                </td>
+              </tr>
+            )}
+            {product.weight && (
+              <tr>
+                <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
+                  Weight
+                </th>
+                <td className='py-2 px-4 border border-gray-300'>
+                  {product.weight}
+                </td>
+              </tr>
+            )}
           </table>
         </div>
       </div>
