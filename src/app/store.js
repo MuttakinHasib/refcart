@@ -15,7 +15,7 @@ const rootReducer = (state, action) => {
     Object.keys(state).forEach(key => {
       storage.removeItem(`persist:${key}`);
     });
-    state = undefined;
+    state = null;
   }
   return rootReducers(state, action);
 };
