@@ -3,7 +3,7 @@ import { attemptGetCountryData } from './countryActions';
 
 const initialState = {
   loading: false,
-  error: null,
+  // error: null,
   divisions: [],
   districts: [],
   upazilas: [],

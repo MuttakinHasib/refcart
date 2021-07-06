@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   loading: false,
-  error: null,
+  // error: null,
   success: false,
   user: null,
   message: null,
