@@ -57,6 +57,9 @@
   .thumbnail .slick-slide.slick-active.slick-current .thumb-img {
     @apply border-4 border-solid border-primary !important;
   }
+  .thumbnail .slick-slider .slick-list .slick-track {
+    @apply mx-0 !important;
+  }
 
   button,
   a {

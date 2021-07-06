@@ -7,7 +7,7 @@ const ProductDetailsSkeleton = props => (
     </div>
     <div className='container grid grid-cols-1 lg:grid-cols-2 gap-8'>
       <div>
-        <Skeleton height={300} width={`100%`} />
+        <Skeleton height={400} width={`100%`} />
         <div className='flex items-center gap-5 flex-wrap mt-5'>
           <Skeleton height={80} width={120} />
           <Skeleton height={80} width={120} />

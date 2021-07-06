@@ -4,19 +4,7 @@ import Product from '@models/Product';
 import connectDB from '@utils/connectDB';
 
 const handler = async (req, res) => {
-  const {
-    title,
-    images,
-    description,
-    meta_description,
-    brand,
-    category,
-    warranty,
-    sizes,
-    colors,
-    price,
-    countInStock,
-  } = req.body;
+  const { warranty, ...others } = req.body;
 
   try {
     // Connect MongoDB
@@ -24,23 +12,14 @@ const handler = async (req, res) => {
 
     const product = new Product({
       user: req.user._id,
-      title,
-      images,
-      description,
-      meta_description,
-      brand,
-      category,
       warranty: warranty || undefined,
-      sizes,
-      colors,
-      price,
-      countInStock,
+      ...others,
     });
 
     // Save product into database
 
     const createdProduct = await product.save();
-    
+
     if (createdProduct) {
       return res.status(201).json({ message: 'Product created successfully' });
     } else {

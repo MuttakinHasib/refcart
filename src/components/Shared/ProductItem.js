@@ -1,17 +1,21 @@
 import Link from 'next/link';
+import { Image } from 'cloudinary-react';
 
 const ProductItem = ({ product }) => {
   return (
     <div className='bg-white shadow rounded overflow-hidden group flex flex-col justify-between'>
-      <div className='relative'>
-        <img
-          src={product.images[0].url}
-          alt=''
-          className='h-52 w-80 object-cover mx-auto'
-        />
-        <Link href={`/product/${product._id}`}>
-          <a className='opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 transition duration-300 cursor-pointer'>
-            {/* <a
+      <div>
+        <div className='relative'>
+          <Image
+            cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+            publicId={product.images[0].public_id}
+            height='208'
+            width='320'
+            crop='fill'
+          />
+          <Link href={`/product/${product._id}`}>
+            <a className='opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 transition duration-300 cursor-pointer'>
+              {/* <a
               href='#'
               className='text-center rounded-full text-white bg-primary w-9 h-9 flex items-center justify-center transition hover:bg-gray-800'
             >
@@ -49,18 +53,19 @@ const ProductItem = ({ product }) => {
                 />
               </svg>
             </a> */}
+            </a>
+          </Link>
+        </div>
+        <Link href={`/product/${product._id}`}>
+          <a className='pt-4 px-4 block'>
+            <h3 className='uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition'>
+              {product.title}
+            </h3>
           </a>
         </Link>
       </div>
       <div className='flex flex-col justify-between'>
-        <div className='pt-4 pb-3 px-4 flex flex-col justify-between'>
-          <Link href={`/product/${product._id}`}>
-            <a>
-              <h3 className='uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition'>
-                {product.title}
-              </h3>
-            </a>
-          </Link>
+        <div className='pb-3 px-4 flex flex-col justify-between'>
           <div className='flex items-baseline mb-1 space-x-2 font-roboto'>
             <p className='text-primary text-lg font-semibold'>
               ${product.price}

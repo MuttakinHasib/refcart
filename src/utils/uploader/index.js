@@ -1,22 +1,23 @@
-import { v2 as cloudinary } from 'cloudinary';
-
-cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+import axios from 'axios';
 
 /**
- * @param  {any} file
- * @param  {String} folder
+ * @param  {String} folder - folder name
  */
-export const uploader = async (file, folder) => {
+export const getSignature = async folder => {
   try {
-    const res = await cloudinary.uploader.upload(file, { folder });
-    if (!res) {
-      throw new Error('Something went wrong');
-    }
-    return res;
+    const { data } = await axios.post(
+      '/api/cloudinary/sign',
+      {
+        folder,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    // const { signature, timestamp, folder } = data;
+    return data;
   } catch (err) {
     console.error(err.message);
   }

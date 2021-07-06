@@ -186,6 +186,40 @@ const CreateProductScreen = () => {
                 <div className='flex flex-col lg:flex-row items-center gap-5'>
                   <div className='w-full'>
                     <label
+                      htmlFor='materials'
+                      className='text-gray-600 mb-2 block'
+                    >
+                      Materials
+                    </label>
+                    <input
+                      type='text'
+                      name='materials'
+                      id='materials'
+                      className='bg-gray-100 block w-full border border-transparent px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
+                      placeholder='Enter product materials'
+                      {...register('materials')}
+                    />
+                  </div>
+                  <div className='w-full'>
+                    <label
+                      htmlFor='weight'
+                      className='text-gray-600 mb-2 block'
+                    >
+                      Weight
+                    </label>
+                    <input
+                      type='text'
+                      name='weight'
+                      id='weight'
+                      className='bg-gray-100 block w-full border border-transparent px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-gray-500 placeholder-gray-400'
+                      placeholder='Enter product weight'
+                      {...register('weight')}
+                    />
+                  </div>
+                </div>
+                <div className='flex flex-col lg:flex-row items-center gap-5'>
+                  <div className='w-full'>
+                    <label
                       htmlFor='discount'
                       className='text-gray-600 mb-2 block'
                     >
@@ -277,7 +311,11 @@ const CreateProductScreen = () => {
           </div>
         </div>
         <div className='lg:col-span-2'>
-          <FileUploader title='Upload product image' {...{ setPictures }} />
+          <FileUploader
+            title='Upload product image'
+            folderName='products'
+            {...{ setPictures }}
+          />
         </div>
       </div>
     </>

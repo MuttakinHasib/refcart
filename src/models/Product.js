@@ -57,6 +57,12 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    materials: {
+      type: String,
+    },
+    weight: {
+      type: String,
+    },
     brand: {
       type: String,
     },

@@ -1,5 +1,7 @@
+import Head from 'next/head';
 import { useRef } from 'react';
 import Image from 'next/image';
+import { Image as CloudinaryImage } from 'cloudinary-react';
 import Slider from 'react-slick';
 import {
   BreadCrumbs,
@@ -60,6 +62,10 @@ const ProductDetails = () => {
 
   return (
     <>
+      <Head>
+        <title>{product.title}</title>
+        <meta name='description' content={product.meta_description} />
+      </Head>
       <BreadCrumbs items={[{ title: 'Shop', href: '/shop' }, product.title]} />
 
       <div className='container grid grid-cols-1 lg:grid-cols-2 gap-8'>
@@ -76,8 +82,12 @@ const ProductDetails = () => {
                 <Image
                   src={image.secure_url}
                   alt=''
-                  width={image.width}
-                  height={image.height}
+                  // width={image.width}
+                  // height={image.height}
+                  width={1080}
+                  height={800}
+                  // layout='responsive'
+                  className='object-cover'
                   priority
                 />
               </div>
@@ -97,13 +107,21 @@ const ProductDetails = () => {
                   className='p-2 md:p-3 cursor-pointer focus:outline-none'
                 >
                   <Image
-                    className='thumb-img'
+                    className='thumb-img object-cover'
                     src={image.secure_url}
                     alt=''
-                    width={image.width}
-                    height={image.height}
+                    width={320}
+                    height={208}
                     priority
                   />
+                  {/* <CloudinaryImage
+                    cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+                    publicId={image.public_id}
+                    height='208'
+                    width='320'
+                    crop='fill'
+                    className='thumb-img'
+                  /> */}
                 </div>
               ))}
             </Slider>
@@ -192,7 +210,7 @@ const ProductDetails = () => {
             <p className='text-primary text-2xl font-semibold'>
               ${product.price}
             </p>
-            {product.discount && (
+            {product.discount > 0 && (
               <p className='text-gray-500 font-base text-sm line-through'>
                 ${product.discount}
               </p>
@@ -300,13 +318,13 @@ const ProductDetails = () => {
                 </div>
               </td>
             </tr>
-            {product.material && (
+            {product.materials && (
               <tr>
                 <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
-                  Material
+                  Materials
                 </th>
                 <td className='py-2 px-4 border border-gray-300'>
-                  {product.material}
+                  {product.materials}
                 </td>
               </tr>
             )}

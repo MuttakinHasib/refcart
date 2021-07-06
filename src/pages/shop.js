@@ -1,12 +1,20 @@
 import { useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { useMediaQuery } from '@react-hook/media-query';
-import { BreadCrumbs, ProductItem, SideBar } from '@components/index';
-import { products } from '@configs/static';
+import { BreadCrumbs, Loader, ProductItem, SideBar } from '@components/index';
+import { useQuery } from 'react-query';
+import { getAllProducts } from '@utils/api';
 
-const ShopScreen = () => {
+const ShopScreen = props => {
+  const { data: products, isLoading } = useQuery('products', getAllProducts, {
+    initialData: props.products,
+  });
   const isLargeDevice = useMediaQuery('only screen and (min-width: 992px)');
   const [isOpen, setIsOpen] = useState(isLargeDevice);
+
+  if (isLoading) {
+    return <Loader section />;
+  }
 
   return (
     <>
@@ -60,6 +68,16 @@ const ShopScreen = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps = async () => {
+  const products = await getAllProducts();
+
+  return {
+    props: {
+      products,
+    },
+  };
 };
 
 export default ShopScreen;

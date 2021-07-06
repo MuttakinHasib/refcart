@@ -79,13 +79,13 @@ const SideBar = () => {
           <h2 className='text-xl text-gray-800 mb-3 uppercase font-medium'>
             Size
           </h2>
-          <ProductSize />
+          <ProductSize sizes={['M', 'L']} />
         </div>
         <div className='pt-4'>
           <h2 className='text-xl text-gray-800 mb-3 uppercase font-medium'>
             Color
           </h2>
-          <ProductColor />
+          <ProductColor colors={['#F36', '#000']} />
         </div>
       </div>
     </div>
