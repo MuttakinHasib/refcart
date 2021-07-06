@@ -8,10 +8,10 @@ cloudinary.config({
 
 const handler = async (req, res) => {
   const { public_id } = req.body;
-  console.log(public_id);
+
   try {
     const result = await cloudinary.uploader.destroy(public_id);
-    console.log(result);
+
     if (result) {
       return res.status(200).json({ message: 'Image removed' });
     } else {

@@ -6,6 +6,7 @@ import { TrashIcon } from '@heroicons/react/outline';
 import Loader from './Loader';
 import { getSignature } from '@utils/uploader';
 import toast from 'react-hot-toast';
+import { removeImage } from '@utils/api';
 
 const FileUploader = ({ title, folderName, setPictures }) => {
   const [uploadedFile, setUploadedFile] = useState([]);
@@ -13,7 +14,12 @@ const FileUploader = ({ title, folderName, setPictures }) => {
 
   const onDrop = useCallback(acceptedFiles => {
     const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
-
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        // Authorization: `Bearer ${userLogin.token}`,
+      },
+    };
     acceptedFiles.forEach(async acceptedFile => {
       try {
         const { signature, timestamp, folder } = await getSignature(folderName);
@@ -25,7 +31,7 @@ const FileUploader = ({ title, folderName, setPictures }) => {
         formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
 
         setLoading(true);
-        const { data } = await axios.post(URL, formData);
+        const { data } = await axios.post(URL, formData, config);
 
         const { public_id, height, weight, secure_url, url } = data;
         setUploadedFile(prev => [
@@ -40,30 +46,18 @@ const FileUploader = ({ title, folderName, setPictures }) => {
     });
   }, []);
 
-  /**
-   * @param  {String} id - public_id
-   */
   const handleRemove = async id => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
     try {
       setLoading(true);
-      const { data } = await axios.post(
-        `/api/cloudinary/remove`,
-        {
-          public_id: id,
-        },
-        config
-      );
+
+      const { message } = await removeImage(id);
+      if (message) {
+        toast.success(message);
+      }
 
       // filter removed image from state
       setUploadedFile(images => images.filter(image => image.public_id !== id));
       setLoading(false);
-      toast.success(data.message);
     } catch (err) {
       console.log(err.message);
       setLoading(false);
