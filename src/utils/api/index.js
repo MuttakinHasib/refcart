@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getAllProducts = async () => {
   try {
-    const { data } = await axios.get(`${process.env.CLIENT_URL}/api/product`);
+    const { data } = await axios.get(`${process.env.NEXT_PUBLIC_CLIENT_URL}/api/product`);
     return data.products;
   } catch (err) {
     throw new Error(err.message);

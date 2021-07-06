@@ -6,7 +6,7 @@ export default async (req, res) => {
 
   try {
     const activationToken = generateActivationToken({ name, email, password });
-    const url = `${process.env.CLIENT_URL}/user/active/${activationToken}`;
+    const url = `${process.env.NEXT_PUBLIC_CLIENT_URL}/user/active/${activationToken}`;
     await sendActivationEmail(name, email, url);
     res.json({ message: `Account activation email has sent to ${email}` });
   } catch (err) {

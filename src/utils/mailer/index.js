@@ -22,7 +22,7 @@ export const sendActivationEmail = async (name, email, url) => {
   const mailOptions = {
     from: `${process.env.BRAND_NAME} < ${process.env.EMAIL_SERVER_USER}>`,
     to: email,
-    subject: `Signup to ${process.env.CLIENT_URL}`,
+    subject: `Signup to ${process.env.NEXT_PUBLIC_CLIENT_URL}`,
     html: activationTemplate(name, url),
   };
   await transporter.sendMail(mailOptions);

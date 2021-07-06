@@ -17,7 +17,7 @@ export default async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    const url = `${process.env.CLIENT_URL}${
+    const url = `${process.env.NEXT_PUBLIC_CLIENT_URL}${
       req.body.alreadyLoggedIn ? '/account/' : '/'
     }change-password/${resetPasswordIdToken(user._id)}`;
 
