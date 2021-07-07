@@ -191,11 +191,17 @@ const ProductDetails = () => {
             </p>
             {product.category.length > 0 && (
               <p className='flex items-center gap-2'>
-                <span className='text-gray-800 font-semibold'>Category:</span>
-                <div className='flex items-center gap-5'>
+                <span className='text-gray-800 font-semibold'>
+                  {product.category.length > 1 ? 'Categories:' : 'Category:'}
+                </span>
+                <div className='flex items-center'>
                   {product.category.map(({ label }, index) => (
                     <span key={index} className='text-gray-600'>
-                      {label}
+                      {product.category.length - 1 === index
+                        ? !product.category.length === 1
+                          ? `, ${label}`
+                          : label
+                        : label}
                     </span>
                   ))}
                 </div>
