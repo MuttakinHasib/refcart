@@ -1,16 +1,25 @@
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, memo } from 'react';
 import { Image } from 'cloudinary-react';
 import { useDropzone } from 'react-dropzone';
 import { TrashIcon } from '@heroicons/react/outline';
-import Loader from './Loader';
 import { getSignature } from '@utils/uploader';
 import toast from 'react-hot-toast';
 import { removeImage } from '@utils/api';
+import Skeleton from 'react-loading-skeleton';
 
-const FileUploader = ({ title, folderName, setPictures }) => {
+const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
   const [uploadedFile, setUploadedFile] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (defaultImages) {
+      setUploadedFile(prev => [...prev, ...defaultImages]);
+      if (uploadedFile.length > 0) {
+        setUploadedFile([...new Set(uploadedFile)]);
+      }
+    }
+  }, [defaultImages]);
 
   const onDrop = useCallback(acceptedFiles => {
     const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
@@ -76,7 +85,6 @@ const FileUploader = ({ title, folderName, setPictures }) => {
 
   return (
     <div className='rounded p-8 bg-white'>
-      {loading && <Loader />}
       <h1 className='text-2xl text-gray-700 text-center'>{title}</h1>
       <p className='text-xs mt-3 font-light text-gray-500 text-center'>
         File should be PNG, JPEG or JPG
@@ -117,10 +125,11 @@ const FileUploader = ({ title, folderName, setPictures }) => {
               </button>
             </div>
           ))}
+          {(!defaultImages || loading) && <Skeleton width={150} height={150} />}
         </div>
       )}
     </div>
   );
 };
 
-export default FileUploader;
+export default memo(FileUploader);

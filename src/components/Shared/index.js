@@ -10,3 +10,4 @@ export { default as SectionTitle } from './SectionTitle';
 export { default as Loader } from './Loader';
 export { default as RedirectLoader } from './RedirectLoader';
 export { default as FileUploader } from './FileUploader';
+export { default as NoData } from './NoData';
