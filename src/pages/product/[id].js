@@ -52,7 +52,7 @@ const ProductDetails = () => {
   const { query } = useRouter();
   const { id } = query;
   const { data: product, isLoading } = useQuery(
-    ['product', { id }],
+    ['products', { id }],
     getProductById
   );
 
@@ -187,15 +187,15 @@ const ProductDetails = () => {
             </p>
             <p className='space-x-2'>
               <span className='text-gray-800 font-semibold'>Brand:</span>
-              <span className='text-gray-600'>{product.brand}</span>
+              <span className='text-gray-600'>{product.brand.label}</span>
             </p>
             {product.category.length > 0 && (
               <p className='flex items-center gap-2'>
                 <span className='text-gray-800 font-semibold'>Category:</span>
                 <div className='flex items-center gap-5'>
-                  {product.category.map(({ name }, index) => (
+                  {product.category.map(({ label }, index) => (
                     <span key={index} className='text-gray-600'>
-                      {name}
+                      {label}
                     </span>
                   ))}
                 </div>
@@ -308,11 +308,11 @@ const ProductDetails = () => {
               </th>
               <td className='py-2 px-4 border border-gray-300'>
                 <div className='flex items-center gap-3'>
-                  {product.colors.map((color, index) => (
+                  {product.colors.map(({ label }, index) => (
                     <div
                       key={index}
                       className={`border border-gray-200 rounded-sm h-5 w-5 flex items-center justify-center shadow-sm cursor-pointer`}
-                      style={{ backgroundColor: `${color}` }}
+                      style={{ backgroundColor: `${label}` }}
                     />
                   ))}
                 </div>
@@ -338,6 +338,14 @@ const ProductDetails = () => {
                 </td>
               </tr>
             )}
+            <tr>
+              <th className='py-2 px-4 border border-gray-300 w-40 font-medium'>
+                Warranty
+              </th>
+              <td className='py-2 px-4 border border-gray-300'>
+                {product.warranty}
+              </td>
+            </tr>
           </table>
         </div>
       </div>

@@ -56,21 +56,16 @@ const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
   }, []);
 
   const handleRemove = async id => {
-    try {
-      setLoading(true);
-
-      const { message } = await removeImage(id);
-      if (message) {
-        toast.success(message);
-      }
-
-      // filter removed image from state
-      setUploadedFile(images => images.filter(image => image.public_id !== id));
-      setLoading(false);
-    } catch (err) {
-      console.log(err.message);
-      setLoading(false);
-    }
+    toast.promise(removeImage(id), {
+      loading: 'Deleting...',
+      success: data => {
+        setUploadedFile(images =>
+          images.filter(image => image.public_id !== id)
+        );
+        return data.message;
+      },
+      error: 'Failed',
+    });
   };
 
   useEffect(() => {

@@ -64,7 +64,7 @@ const productSchema = new Schema(
       type: String,
     },
     brand: {
-      type: String,
+      type: Object,
     },
     // brand: {
     //   type: Schema.Types.ObjectId,

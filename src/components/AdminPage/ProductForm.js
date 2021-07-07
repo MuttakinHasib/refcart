@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import CreatableSelect from 'react-select/creatable';
 
@@ -38,30 +38,70 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
   const [colors, setColors] = useState([]);
   const [category, setCategory] = useState([]);
 
+  useEffect(() => {
+    if (defaultValues) {
+      setBrand(defaultValues.brand);
+      setColors(prev => [...prev, ...defaultValues.colors]);
+      setSizes(prev => [...prev, ...defaultValues.sizes]);
+      setCategory(prev => [...prev, ...defaultValues.category]);
+      if (colors.length || sizes.length || category.length) {
+        setColors([...new Set(colors)]);
+        setSizes([...new Set(sizes)]);
+        setCategory([...new Set(category)]);
+      }
+    }
+  }, [defaultValues]);
+
   const handleBrandChange = (newValue, actionMeta) => {
     if (newValue) {
-      setBrand(newValue.value);
+      setBrand(newValue);
     }
     if (actionMeta.action === 'clear') {
       setBrand(null);
     }
   };
   const handleSizesChange = (newValue, actionMeta) => {
-    newValue.map(value => setSizes([...sizes, value.label]));
     if (actionMeta.action === 'clear') {
       setSizes([]);
+    } else if (
+      actionMeta.action === 'remove-value' ||
+      actionMeta.action === 'pop-value'
+    ) {
+      setSizes(_ =>
+        sizes.filter(size => size.label !== actionMeta.removedValue.label)
+      );
+    } else {
+      setSizes([...new Set([...sizes, ...newValue])]);
     }
   };
   const handleColorsChange = (newValue, actionMeta) => {
-    newValue.map(value => setColors([...colors, value.label]));
     if (actionMeta.action === 'clear') {
       setColors([]);
+    } else if (
+      actionMeta.action === 'remove-value' ||
+      actionMeta.action === 'pop-value'
+    ) {
+      setColors(_ =>
+        colors.filter(color => color.label !== actionMeta.removedValue.label)
+      );
+    } else {
+      setColors([...new Set([...colors, ...newValue])]);
     }
   };
   const handleCategoryChange = (newValue, actionMeta) => {
-    newValue.map(value => setCategory([...category, { name: value.label }]));
+    // newValue.map(value => setCategory([...category, value]));
+    console.log(actionMeta);
     if (actionMeta.action === 'clear') {
       setCategory([]);
+    } else if (
+      actionMeta.action === 'remove-value' ||
+      actionMeta.action === 'pop-value'
+    ) {
+      setCategory(_ =>
+        category.filter(({ label }) => label !== actionMeta.removedValue.label)
+      );
+    } else {
+      setCategory([...new Set([...category, ...newValue])]);
     }
   };
 
@@ -217,7 +257,7 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
             <CreatableSelect
               isClearable
               onChange={handleBrandChange}
-              // onInputChange={handleBrandInputChange}
+              defaultValue={defaultValues?.brand || ''}
               options={null}
               styles={customStyles}
               placeholder='Type Brand name'
@@ -231,6 +271,8 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
             </label>
             <CreatableSelect
               isMulti
+              isClearable
+              defaultValue={defaultValues?.sizes || ''}
               onChange={handleSizesChange}
               options={null}
               styles={customStyles}
@@ -243,6 +285,8 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
             </label>
             <CreatableSelect
               isMulti
+              isClearable
+              defaultValue={defaultValues?.colors || ''}
               onChange={handleColorsChange}
               options={null}
               styles={customStyles}
@@ -254,8 +298,9 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
               Category
             </label>
             <CreatableSelect
-              defaultValue={defaultValues?.category || ''}
               isMulti
+              isClearable
+              defaultValue={defaultValues?.category || ''}
               onChange={handleCategoryChange}
               options={null}
               styles={customStyles}

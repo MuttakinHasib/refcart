@@ -43,10 +43,8 @@ export const getAllProducts = async () => {
 export const getProductById = async ({ queryKey }) => {
   const [_key, { id }] = queryKey;
   try {
-    if (id) {
-      const { data } = await axios.get(`/api/product/${id}`, config);
-      return data.product;
-    }
+    const { data } = await axios.get(`/api/product/${id}`, config);
+    return data.product;
   } catch (err) {
     throw new Error(err.message);
   }

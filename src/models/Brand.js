@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 
 const brandSchema = new Schema(
   {
-    name: {
+    label: {
       type: String,
       required: true,
     },
