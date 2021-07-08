@@ -66,11 +66,11 @@ const ProductsScreen = () => {
               </select>
             </div>
           </div>
-          <div className='p-8 divide-y divide-gray-100'>
+          <div className='py-8 divide-y divide-gray-100'>
             {products.map(product => (
               <div
                 key={product._id}
-                className='grid grid-cols-8 items-center gap-y-5 hover:bg-gray-100 py-5'
+                className='grid grid-cols-8 items-center px-8 gap-y-5 hover:bg-gray-100 py-5'
               >
                 <div className='col-span-3'>
                   <div className='flex items-center space-x-3'>
