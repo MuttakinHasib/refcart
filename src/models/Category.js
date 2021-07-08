@@ -2,13 +2,22 @@ import mongoose, { Schema } from 'mongoose';
 
 const categorySchema = new Schema(
   {
-    name: {
+    label: {
       type: String,
       required: true,
     },
-    image: {
+    value: {
       type: String,
+    },
+    description: {
+      type: String,
+    },
+    image: {
+      type: Object,
       required: true,
+      default: {
+        url: 'https://www.cricdiction.com/wp-content/uploads/2019/12/placeholder.png',
+      },
     },
     products: [
       {

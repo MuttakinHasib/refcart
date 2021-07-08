@@ -13,7 +13,7 @@ const WishlistItem = () => {
           />
         </div>
         <div className='space-y-2'>
-          <Link href={`/product/1`}>
+          <Link href={`/shop/1`}>
             <a className='text-base block font-medium text-gray-800 hover:text-primary transition'>
               Casual USB Charging Laptop Backpacks
             </a>

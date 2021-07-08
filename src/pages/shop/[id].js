@@ -189,24 +189,10 @@ const ProductDetails = () => {
               <span className='text-gray-800 font-semibold'>Brand:</span>
               <span className='text-gray-600'>{product.brand.label}</span>
             </p>
-            {product.category.length > 0 && (
-              <p className='flex items-center gap-2'>
-                <span className='text-gray-800 font-semibold'>
-                  {product.category.length > 1 ? 'Categories:' : 'Category:'}
-                </span>
-                <div className='flex items-center'>
-                  {product.category.map(({ label }, index) => (
-                    <span key={index} className='text-gray-600'>
-                      {product.category.length - 1 === index
-                        ? !product.category.length === 1
-                          ? `, ${label}`
-                          : label
-                        : label}
-                    </span>
-                  ))}
-                </div>
-              </p>
-            )}
+            <p className='space-x-2'>
+              <span className='text-gray-800 font-semibold'>Category:</span>
+              <span className='text-gray-600'>{product.category.label}</span>
+            </p>
             <p className='space-x-2'>
               <span className='text-gray-800 font-semibold'>SKU:</span>
               <span className='text-gray-600 uppercase'>{product.sku}</span>

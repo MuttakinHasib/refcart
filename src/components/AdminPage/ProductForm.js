@@ -1,5 +1,13 @@
+import {
+  createBrand,
+  createCategory,
+  getBrands,
+  getCategories,
+} from '@utils/api';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { useDispatch } from 'react-redux';
 import CreatableSelect from 'react-select/creatable';
 
 const customStyles = {
@@ -32,34 +40,40 @@ const customStyles = {
 };
 
 const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
+  const { data: brands } = useQuery('brands', getBrands);
+  const { data: categories } = useQuery('categories', getCategories);
+
   const { handleSubmit, register } = useForm({ defaultValues });
   const [brand, setBrand] = useState(null);
   const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState(null);
 
   useEffect(() => {
     if (defaultValues) {
       setBrand(defaultValues.brand);
       setColors(prev => [...prev, ...defaultValues.colors]);
       setSizes(prev => [...prev, ...defaultValues.sizes]);
-      setCategory(prev => [...prev, ...defaultValues.category]);
-      if (colors.length || sizes.length || category.length) {
+      setCategory(defaultValues.category);
+
+      if (colors.length || sizes.length) {
         setColors([...new Set(colors)]);
         setSizes([...new Set(sizes)]);
-        setCategory([...new Set(category)]);
       }
     }
   }, [defaultValues]);
 
-  const handleBrandChange = (newValue, actionMeta) => {
-    if (newValue) {
-      setBrand(newValue);
-    }
+  const handleBrandChange = async (newValue, actionMeta) => {
     if (actionMeta.action === 'clear') {
       setBrand(null);
+    } else if (actionMeta.action === 'create-option') {
+      const value = await createBrand(newValue);
+      setBrand(value._id);
+    } else if (actionMeta.action === 'select-option') {
+      setBrand(newValue._id);
     }
   };
+
   const handleSizesChange = (newValue, actionMeta) => {
     if (actionMeta.action === 'clear') {
       setSizes([]);
@@ -88,20 +102,15 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
       setColors([...new Set([...colors, ...newValue])]);
     }
   };
-  const handleCategoryChange = (newValue, actionMeta) => {
-    // newValue.map(value => setCategory([...category, value]));
-    console.log(actionMeta);
+
+  const handleCategoryChange = async (newValue, actionMeta) => {
     if (actionMeta.action === 'clear') {
-      setCategory([]);
-    } else if (
-      actionMeta.action === 'remove-value' ||
-      actionMeta.action === 'pop-value'
-    ) {
-      setCategory(_ =>
-        category.filter(({ label }) => label !== actionMeta.removedValue.label)
-      );
-    } else {
-      setCategory([...new Set([...category, ...newValue])]);
+      setCategory(null);
+    } else if (actionMeta.action === 'create-option') {
+      const value = await createCategory(newValue);
+      setCategory(value._id);
+    } else if (actionMeta.action === 'select-option') {
+      setCategory(newValue._id);
     }
   };
 
@@ -258,7 +267,7 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
               isClearable
               onChange={handleBrandChange}
               defaultValue={defaultValues?.brand || ''}
-              options={null}
+              options={brands}
               styles={customStyles}
               placeholder='Type Brand name'
             />
@@ -298,13 +307,12 @@ const ProductForm = ({ formId, onFormSubmit, defaultValues }) => {
               Category
             </label>
             <CreatableSelect
-              isMulti
               isClearable
-              defaultValue={defaultValues?.category || ''}
               onChange={handleCategoryChange}
-              options={null}
+              defaultValue={defaultValues?.category || ''}
+              options={categories}
               styles={customStyles}
-              placeholder='Type category'
+              placeholder='Type category name'
             />
           </div>
         </div>

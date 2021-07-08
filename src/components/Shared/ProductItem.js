@@ -13,7 +13,7 @@ const ProductItem = ({ product }) => {
             width='320'
             crop='fill'
           />
-          <Link href={`/product/${product._id}`}>
+          <Link href={`/shop/${product._id}`}>
             <a className='opacity-0 invisible group-hover:opacity-100 group-hover:visible absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center gap-2 transition duration-300 cursor-pointer'>
               {/* <a
               href='#'
@@ -56,7 +56,7 @@ const ProductItem = ({ product }) => {
             </a>
           </Link>
         </div>
-        <Link href={`/product/${product._id}`}>
+        <Link href={`/shop/${product._id}`}>
           <a className='pt-4 px-4 block'>
             <h3 className='uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition'>
               {product.title}

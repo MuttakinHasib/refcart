@@ -16,7 +16,7 @@ const ReviewDetailsScreen = () => {
               className='w-20 object-contain'
             />
             <div className='space-y-2'>
-              <Link href={`/product/1`}>
+              <Link href={`/shop/1`}>
                 <a className='text-base block font-medium text-gray-800 hover:text-primary transition'>
                   Xbox One Wireless Control
                 </a>

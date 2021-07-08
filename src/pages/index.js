@@ -26,7 +26,7 @@ const HomeScreen = props => {
 
 export const getServerSideProps = async () => {
   const products = await getAllProducts();
-  console.log(products);
+
   return {
     props: {
       products,

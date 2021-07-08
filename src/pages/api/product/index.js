@@ -7,7 +7,9 @@ export default async (_req, res) => {
     await connectDB();
 
     // Get all products
-    const products = await Product.find({});
+    const products = await Product.find({})
+      .populate('brand')
+      .populate('category');
 
     return res.json({ products });
   } catch (err) {

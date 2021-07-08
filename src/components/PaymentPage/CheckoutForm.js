@@ -29,7 +29,6 @@ const CheckoutForm = () => {
     if (error) {
       setClicked(false);
       setLoading(false);
-      console.log(error);
     } else {
       const { id } = paymentMethod;
       try {

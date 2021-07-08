@@ -19,9 +19,9 @@ const Sidebar = () => {
           <HomeIcon className='w-5' />
           <span>Dashboard</span>
         </AdminActiveLink>
-        <AdminActiveLink href='/admin/category'>
+        <AdminActiveLink href='/admin/categories'>
           <CollectionIcon className='w-5' />
-          <span>Category</span>
+          <span>Categories</span>
         </AdminActiveLink>
         <AdminActiveLink href='/admin/brands'>
           <StarIcon className='w-5' />

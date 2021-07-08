@@ -64,26 +64,18 @@ const productSchema = new Schema(
       type: String,
     },
     brand: {
-      type: Object,
+      type: Schema.Types.ObjectId,
+      ref: 'Brand',
     },
-    // brand: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Brand',
-    //   default: null,
-    // },
     warranty: {
       type: String,
       required: true,
       default: 'No warranty available',
     },
-    // category: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Category',
-    //     default: null,
-    //   },
-    // ],
-    category: { type: Array },
+    category: {
+      type: Schema.Types.ObjectId,
+      ref: 'Category',
+    },
     sku: {
       type: String,
       default: generate(),

@@ -25,7 +25,7 @@ const CartScreen = () => {
                 />
               </div>
               <div className='max-w-sm'>
-                <Link href='/product/1'>
+                <Link href='/shop/1'>
                   <a className='text-lg block mb-4 font-medium uppercase text-gray-800 hover:text-primary transition'>
                     XB450AP Extra Bass Headphones
                   </a>

@@ -48,7 +48,7 @@ export const attemptLogin = createAsyncThunk(
       const { data } = await axios.post(`/api/auth/login`, loginData, config);
       successAlert(data.message);
       errorAlert(data.error);
-      console.log(data);
+
       return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));

@@ -88,7 +88,7 @@ const ProductsScreen = () => {
                     alt=''
                     className='h-16 w-20 object-cover rounded-lg'
                   /> */}
-                    <Link href={`/product/${product._id}`}>
+                    <Link href={`/shop/${product._id}`}>
                       <a className='text-gray-700 text-base hover:underline'>
                         {product.title}
                       </a>
@@ -109,7 +109,7 @@ const ProductsScreen = () => {
                       In stock
                     </span>
                   ) : (
-                    <span className='text-sm font-semibold py-1 px-3 bg-red-200 rounded-2xl text-red-900 border border-green-300'>
+                    <span className='text-sm font-semibold py-1 px-3 bg-red-200 rounded-2xl text-red-900 border border-red-300'>
                       Stock out
                     </span>
                   )}

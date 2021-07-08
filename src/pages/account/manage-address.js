@@ -47,7 +47,6 @@ const ManageAddressScreen = () => {
   // Handle form submit & dispatch update user profile
   const onSubmit = async data => {
     try {
-      console.log(data);
       dispatch(attemptUpdateProfile(data));
       setIsDisabled(prev => !prev);
     } catch (err) {

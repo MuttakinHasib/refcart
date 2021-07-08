@@ -49,6 +49,7 @@ export const getProductById = async ({ queryKey }) => {
     throw new Error(err.message);
   }
 };
+
 /**
  * @param  {String} {id
  * @param  {Object} ...updateData}
@@ -74,6 +75,64 @@ export const getAllUsers = async () => {
       config
     );
     return data.users;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export const getBrands = async () => {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/brand`,
+      config
+    );
+    return data.brands;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+/**
+ * @param  {Object} brandData
+ */
+export const createBrand = async brandData => {
+  try {
+    const { data } = await axios.post(`/api/brand/create`, brandData, config);
+
+    if (data.message) toast.success(data.message);
+
+    return data.brand;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+export const getCategories = async () => {
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/category`,
+      config
+    );
+    return data.categories;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+/**
+ * @param  {Object} categoryData
+ */
+export const createCategory = async categoryData => {
+  try {
+    const { data } = await axios.post(
+      `/api/category/create`,
+      categoryData,
+      config
+    );
+
+    if (data.message) toast.success(data.message);
+
+    return data.category;
   } catch (err) {
     throw new Error(err.message);
   }

@@ -6,11 +6,14 @@ import {
   CashOnDelivery,
 } from '@components/index';
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_CLIENT_KEY);
 
 const PaymentScreen = () => {
   const [paymentMethod, setPaymentMethod] = useState('credit');
   return (
-    <>
+    <Elements stripe={stripePromise}>
       <BreadCrumbs
         items={[
           { title: 'Cart', href: '/cart' },
@@ -89,7 +92,7 @@ const PaymentScreen = () => {
           <CartSummary summary={{ subtotal: 45.0, total: 45.0 }} />
         </div>
       </div>
-    </>
+    </Elements>
   );
 };
 

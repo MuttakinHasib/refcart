@@ -22,6 +22,7 @@ const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
   }, [defaultImages]);
 
   const onDrop = useCallback(acceptedFiles => {
+    setLoading(true);
     const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     const config = {
       headers: {
@@ -39,16 +40,14 @@ const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
         formData.append('timestamp', timestamp);
         formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
 
-        setLoading(true);
         const { data } = await axios.post(URL, formData, config);
+        setLoading(false);
 
         const { public_id, height, weight, secure_url, url } = data;
         setUploadedFile(prev => [
           ...prev,
           { public_id, height, weight, secure_url, url },
         ]);
-
-        setLoading(false);
       } catch (err) {
         setLoading(false);
       }
@@ -102,7 +101,7 @@ const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
           </div>
         </div>
       </div>
-      {uploadedFile.length > 0 && (
+      {(loading || uploadedFile.length > 0) && (
         <div className='flex items-center gap-3 mt-8 flex-wrap'>
           {uploadedFile.map(image => (
             <div key={image.public_id} className='group relative transition'>
@@ -120,7 +119,7 @@ const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
               </button>
             </div>
           ))}
-          {(!defaultImages || loading) && <Skeleton width={150} height={150} />}
+          {loading && <Skeleton width={150} height={150} />}
         </div>
       )}
     </div>
