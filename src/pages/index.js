@@ -8,9 +8,7 @@ import { getAllProducts } from '@utils/api';
 import { useQuery } from 'react-query';
 
 const HomeScreen = props => {
-  const { data: products, isLoading } = useQuery('products', getAllProducts, {
-    initialData: props.products,
-  });
+  const { data: products, isLoading } = useQuery('products', getAllProducts);
   if (isLoading) {
     return <Loader section />;
   }
@@ -24,14 +22,14 @@ const HomeScreen = props => {
   );
 };
 
-export const getServerSideProps = async () => {
-  const products = await getAllProducts();
+// export const getServerSideProps = async () => {
+//   const products = await getAllProducts();
 
-  return {
-    props: {
-      products,
-    },
-  };
-};
+//   return {
+//     props: {
+//       products,
+//     },
+//   };
+// };
 
 export default HomeScreen;

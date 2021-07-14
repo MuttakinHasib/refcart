@@ -19,17 +19,17 @@ const categorySchema = new Schema(
         url: 'https://www.cricdiction.com/wp-content/uploads/2019/12/placeholder.png',
       },
     },
-    products: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Product',
-      },
-    ],
+    // products: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Product',
+    //   },
+    // ],
   },
   { timestamps: true }
 );
 
 const Category =
-  mongoose.models.Category || mongoose.model('Category', categorySchema);
+  mongoose.models.category || mongoose.model('category', categorySchema);
 
 export default Category;

@@ -22,13 +22,13 @@ const brandSchema = new Schema(
     products: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Product',
+        ref: 'product',
       },
     ],
   },
   { timestamps: true }
 );
 
-const Brand = mongoose.models.Brand || mongoose.model('Brand', brandSchema);
+const Brand = mongoose.models.brand || mongoose.model('brand', brandSchema);
 
 export default Brand;

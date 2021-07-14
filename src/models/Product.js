@@ -4,9 +4,9 @@ import mongoose, { Schema } from 'mongoose';
 const reviewSchema = new Schema(
   {
     user: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: 'user',
     },
     name: {
       type: String,
@@ -33,9 +33,9 @@ const reviewSchema = new Schema(
 const productSchema = new Schema(
   {
     user: {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: 'user',
     },
     title: {
       type: String,
@@ -65,7 +65,7 @@ const productSchema = new Schema(
     },
     brand: {
       type: Schema.Types.ObjectId,
-      ref: 'Brand',
+      ref: 'brand',
     },
     warranty: {
       type: String,
@@ -74,7 +74,7 @@ const productSchema = new Schema(
     },
     category: {
       type: Schema.Types.ObjectId,
-      ref: 'Category',
+      ref: 'category',
     },
     sku: {
       type: String,
@@ -115,6 +115,6 @@ const productSchema = new Schema(
 );
 
 const Product =
-  mongoose.models.Product || mongoose.model('Product', productSchema);
+  mongoose.models.product || mongoose.model('product', productSchema);
 
 export default Product;
