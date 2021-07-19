@@ -59,7 +59,10 @@ const CategoryScreen = () => {
           <div className='p-8'>
             <div className='grid grid-cols-6 gap-8'>
               {categories.map(category => (
-                <Link href='/' key={category._id}>
+                <Link
+                  href={`/admin/categories/edit/${category._id}`}
+                  key={category._id}
+                >
                   <a className='border border-gray-200 rounded-md'>
                     <div className='p-5'>
                       <Image
@@ -67,12 +70,15 @@ const CategoryScreen = () => {
                           process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
                         }
                         publicId={
-                          category.image.public_id
-                            ? category.image.public_id
+                          category.images[category.images.length - 1].public_id
+                            ? category.images[category.images.length - 1]
+                                .public_id
                             : null
                         }
                         src={
-                          !category.image.public_id ? category.image.url : null
+                          !category.images[category.images.length - 1].public_id
+                            ? category.images[category.images.length - 1].url
+                            : null
                         }
                         alt=''
                         height={80}

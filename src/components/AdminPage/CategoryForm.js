@@ -41,7 +41,7 @@ const CategoryForm = ({ formId, onFormSubmit, defaultValues }) => {
 
   useEffect(() => {
     if (defaultValues) {
-      setCategory(defaultValues.category);
+      setCategory(defaultValues);
     }
   }, [defaultValues]);
 
@@ -70,7 +70,7 @@ const CategoryForm = ({ formId, onFormSubmit, defaultValues }) => {
           <CreatableSelect
             isClearable
             onChange={handleCategoryChange}
-            defaultValue={defaultValues?.category || ''}
+            defaultValue={defaultValues || ''}
             options={categories}
             styles={customStyles}
             placeholder='Type category name'

@@ -1,17 +1,19 @@
-import Brand from '@models/Brand';
+import Category from '@models/Category';
 import connectDB from '@utils/connectDB';
 
 const handler = async (req, res) => {
   const { id } = req.query;
-  if (req.method === 'DELETE') {
+  if (req.method === 'PUT') {
     try {
       // Connect MongoDB
       await connectDB();
 
-      const deleted = await Brand.findByIdAndRemove(id);
+      const updated = await Category.findByIdAndUpdate(id, req.body);
 
-      if (deleted) {
-        return res.status(200).json({ message: 'Brand deleted successfully' });
+      if (updated) {
+        return res
+          .status(200)
+          .json({ message: 'Category updated successfully' });
       } else {
         return res.status(400).json({ error: 'Something went wrong' });
       }

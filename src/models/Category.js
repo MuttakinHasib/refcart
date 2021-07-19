@@ -12,8 +12,8 @@ const categorySchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    image: {
-      type: Object,
+    images: {
+      type: Array,
       required: true,
       default: {
         url: 'https://www.cricdiction.com/wp-content/uploads/2019/12/placeholder.png',

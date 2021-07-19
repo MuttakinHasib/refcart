@@ -1,4 +1,4 @@
-import Brand from '@models/Brand';
+import Category from '@models/Category';
 import connectDB from '@utils/connectDB';
 
 const handler = async (req, res) => {
@@ -8,10 +8,12 @@ const handler = async (req, res) => {
       // Connect MongoDB
       await connectDB();
 
-      const deleted = await Brand.findByIdAndRemove(id);
+      const deleted = await Category.findByIdAndRemove(id);
 
       if (deleted) {
-        return res.status(200).json({ message: 'Brand deleted successfully' });
+        return res
+          .status(200)
+          .json({ message: 'Category deleted successfully' });
       } else {
         return res.status(400).json({ error: 'Something went wrong' });
       }

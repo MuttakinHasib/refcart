@@ -8,10 +8,10 @@ export default async (req, res) => {
     // Connect MongoDB
     await connectDB();
 
-    const brand = await Brand.findById(id).populate('product');
+    const brand = await Brand.findById(id);
     // If brand is not found
     if (!brand) {
-      return res.status(404).json({ error: 'Product not found' });
+      return res.status(404).json({ error: 'Brand not found' });
     }
 
     return res.status(200).json({ brand });

@@ -121,7 +121,7 @@ export const updateBrand = async ({ id, ...updateData }) => {
       { ...updateData },
       config
     );
-    
+
     if (data.message) toast.success(data.message);
     return data;
   } catch (err) {
@@ -151,6 +151,43 @@ export const getCategories = async () => {
       config
     );
     return data.categories;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+/**
+ * @param  {} {queryKey}
+ * @description Get Category by ID
+ */
+export const getCategoryById = async ({ queryKey }) => {
+  const [_key, { id }] = queryKey;
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/category/${id}`,
+      config
+    );
+
+    return data.category;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+/**
+ * @param  {String} {id
+ * @param  {Object} ...updateData}
+ */
+export const updateCategory = async ({ id, ...updateData }) => {
+  try {
+    const { data } = await axios.put(
+      `/api/category/update/${id}`,
+      { ...updateData },
+      config
+    );
+
+    if (data.message) toast.success(data.message);
+    return data;
   } catch (err) {
     throw new Error(err.message);
   }
