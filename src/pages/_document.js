@@ -6,15 +6,16 @@ class MyDocument extends Document {
       <Html lang='en'>
         <Head>
           <meta name='image' content='/images/seo_image.png' />
-          <meta property='og:title' content='Refcart | Online Shopping Mall' />
-          <meta
-            name='google-site-verification'
-            content='LUBT9DCkD_bj06Z0b5imXXQiZXiwadd3gYjzqN9yDy8'
-          />
+          <meta property='title' content='Refcart | Online Shopping Mall' />
           <meta
             name='description'
             content='Refcart is an e-commerce site which will be capable of providing every kind of goods and products from every sector to every consumer located in Bangladesh.'
           />
+          <meta
+            name='google-site-verification'
+            content='LUBT9DCkD_bj06Z0b5imXXQiZXiwadd3gYjzqN9yDy8'
+          />
+          <meta property='og:title' content='Refcart | Online Shopping Mall' />
           <meta
             property='og:description'
             content='Refcart is an e-commerce site which will be capable of providing every kind of goods and products from every sector to every consumer located in Bangladesh.'
