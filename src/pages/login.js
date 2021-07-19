@@ -26,7 +26,6 @@ const LoginScreen = () => {
 
   // Handle Google Sign In
   const googleSignInHandler = res => {
-    console.log(res);
     dispatch(attemptGoogleSignIn({ idToken: res.tokenId }));
   };
 
