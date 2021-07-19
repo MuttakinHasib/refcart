@@ -1,6 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-const categorySchema = new Schema(
+const categorySchema = new mongoose.Schema(
   {
     label: {
       type: String,
@@ -19,12 +19,12 @@ const categorySchema = new Schema(
         url: 'https://www.cricdiction.com/wp-content/uploads/2019/12/placeholder.png',
       },
     },
-    // products: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Product',
-    //   },
-    // ],
+    products: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product',
+      },
+    ],
   },
   { timestamps: true }
 );

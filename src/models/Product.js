@@ -1,10 +1,10 @@
 import { generate } from 'shortid';
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-const reviewSchema = new Schema(
+const reviewSchema = new mongoose.Schema(
   {
     user: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'user',
     },
@@ -30,10 +30,10 @@ const reviewSchema = new Schema(
   { timestamps: true }
 );
 
-const productSchema = new Schema(
+const productSchema = new mongoose.Schema(
   {
     user: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'user',
     },
@@ -64,7 +64,7 @@ const productSchema = new Schema(
       type: String,
     },
     brand: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'brand',
     },
     warranty: {
@@ -73,7 +73,7 @@ const productSchema = new Schema(
       default: 'No warranty available',
     },
     category: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'category',
     },
     sku: {

@@ -1,6 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-const brandSchema = new Schema(
+const brandSchema = new mongoose.Schema(
   {
     label: {
       type: String,
@@ -21,7 +21,7 @@ const brandSchema = new Schema(
     },
     products: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'product',
       },
     ],

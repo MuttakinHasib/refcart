@@ -6,6 +6,7 @@ import {
 } from '@components/HomePage/Sections';
 import { getAllProducts } from '@utils/api';
 import { useQuery } from 'react-query';
+import Head from 'next/head';
 
 const HomeScreen = props => {
   const { data: products, isLoading } = useQuery('products', getAllProducts);
@@ -14,6 +15,9 @@ const HomeScreen = props => {
   }
   return (
     <>
+      <Head>
+        <title>Refcart | Online Shopping Mall</title>
+      </Head>
       <Slider />
       <Feature />
       <Category />
