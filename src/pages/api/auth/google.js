@@ -3,8 +3,10 @@ import connectDB from '@utils/connectDB';
 import { generateIdToken } from '@utils/generateToken';
 import { google } from 'googleapis';
 
+const { GOOGLE_CLIENT_SECRET, NEXT_PUBLIC_GOOGLE_CLIENT_ID } = process.env;
 const { OAuth2 } = google.auth;
-const client = new OAuth2(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
+
+const client = new OAuth2(NEXT_PUBLIC_GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET);
 
 export default async (req, res) => {
   const { idToken } = req.body;
@@ -14,7 +16,7 @@ export default async (req, res) => {
 
     const verify = await client.verifyIdToken({
       idToken,
-      audience: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      audience: NEXT_PUBLIC_GOOGLE_CLIENT_ID,
     });
 
     const { email, email_verified, name, picture: avatar } = verify.payload;
@@ -45,7 +47,7 @@ export default async (req, res) => {
           name,
           email,
           avatar,
-          password: email + process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+          password: email + NEXT_PUBLIC_GOOGLE_CLIENT_ID,
         });
 
         if (newUser) {
