@@ -111,6 +111,7 @@ const LoginScreen = () => {
           <GoogleLogin
             clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
             buttonText='Login'
+            autoLoad={false}
             onSuccess={googleSignInHandler}
             onFailure={googleSignInHandler}
             cookiePolicy={'single_host_origin'}
