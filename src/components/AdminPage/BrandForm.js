@@ -36,12 +36,12 @@ const customStyles = {
 const BrandForm = ({ formId, onFormSubmit, defaultValues }) => {
   const { data: brands, isLoading } = useQuery('brands', getBrands);
 
-  const { handleSubmit, register } = useForm({ defaultValues });
+  const { handleSubmit, register } = useForm(defaultValues);
   const [brand, setBrand] = useState(null);
 
   useEffect(() => {
     if (defaultValues) {
-      setBrand(defaultValues.brand);
+      setBrand(defaultValues);
     }
   }, [defaultValues]);
 
@@ -70,7 +70,7 @@ const BrandForm = ({ formId, onFormSubmit, defaultValues }) => {
           <CreatableSelect
             isClearable
             onChange={handleBrandChange}
-            defaultValue={defaultValues?.brand || ''}
+            defaultValue={defaultValues || ''}
             options={brands}
             styles={customStyles}
             placeholder='Type Brand name'

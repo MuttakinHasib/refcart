@@ -5,7 +5,7 @@ import rootReducers from './reducers';
 import storage from './storage';
 
 const persistConfig = {
-  key: 'root',
+  key: 'refcart',
   storage,
   blacklist: ['auth/attemptSignup'],
 };

@@ -93,6 +93,42 @@ export const getBrands = async () => {
 };
 
 /**
+ * @param  {} {queryKey}
+ * @description Get Brand by ID
+ */
+export const getBrandById = async ({ queryKey }) => {
+  const [_key, { id }] = queryKey;
+  try {
+    const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/brand/${id}`,
+      config
+    );
+
+    return data.brand;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+/**
+ * @param  {String} {id
+ * @param  {Object} ...updateData}
+ */
+export const updateBrand = async ({ id, ...updateData }) => {
+  try {
+    const { data } = await axios.put(
+      `/api/product/brand/${id}`,
+      { ...updateData },
+      config
+    );
+    if (data.message) toast.success(data.message);
+    return data;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+/**
  * @param  {Object} brandData
  */
 export const createBrand = async brandData => {

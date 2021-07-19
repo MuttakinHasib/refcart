@@ -58,8 +58,8 @@ export const attemptGetUserProfile = createAsyncThunk(
         },
       };
 
+      console.log(user.token);
       const { data } = await axios.get(`/api/user/profile`, config);
-
       errorAlert(data.error);
       successAlert(data.message);
       dispatch(updateAuthUser(data.user));

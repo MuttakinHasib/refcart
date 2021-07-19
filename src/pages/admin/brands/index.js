@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 
 const BrandsScreen = () => {
   const { data: brands, isLoading } = useQuery('brands', getBrands);
-
+  console.log(brands);
   if (isLoading) {
     return (
       <>
@@ -59,7 +59,7 @@ const BrandsScreen = () => {
           <div className='p-8'>
             <div className='grid grid-cols-6 gap-8'>
               {brands.map(brand => (
-                <Link href='/' key={brand._id}>
+                <Link href={`/admin/brands/edit/${brand._id}`} key={brand._id}>
                   <a className='border border-gray-200 rounded-md'>
                     <div className='p-5'>
                       <Image

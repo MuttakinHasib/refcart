@@ -4,6 +4,7 @@ import connectDB from '@utils/connectDB';
 import { generateIdToken } from '@utils/generateToken';
 
 const handler = async (req, res) => {
+  
   try {
     // Connect MongoDB
     await connectDB();
