@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          <meta name='image' content='/seo_image.png' />
+          <meta name='image' content='/images/seo_image.png' />
           <meta property='og:title' content='Refcart | Online Shopping Mall' />
           <meta
             name='google-site-verification'
@@ -19,7 +19,7 @@ class MyDocument extends Document {
             property='og:description'
             content='Refcart is an e-commerce site which will be capable of providing every kind of goods and products from every sector to every consumer located in Bangladesh.'
           />
-          <meta property='og:image' content='/seo_image.png' />
+          <meta property='og:image' content='/images/seo_image.png' />
           <meta property='og:url' content='https://refcart.vercel.app/' />
           <meta property='og:type' content='website' />
 
@@ -30,7 +30,7 @@ class MyDocument extends Document {
             name='twitter:description'
             content='Refcart is an e-commerce site which will be capable of providing every kind of goods and products from every sector to every consumer located in Bangladesh.'
           />
-          <meta name='twitter:image' content='/seo_image.png' />
+          <meta name='twitter:image' content='/images/seo_image.png' />
 
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
