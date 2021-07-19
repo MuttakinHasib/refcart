@@ -1,4 +1,4 @@
-import { Loader, Slider } from '@components/index';
+import { Slider } from '@components/index';
 import {
   Category,
   Feature,
@@ -10,9 +10,7 @@ import Head from 'next/head';
 
 const HomeScreen = props => {
   const { data: products, isLoading } = useQuery('products', getAllProducts);
-  if (isLoading) {
-    return <Loader section />;
-  }
+
   return (
     <>
       <Head>
@@ -21,7 +19,7 @@ const HomeScreen = props => {
       <Slider />
       <Feature />
       <Category />
-      <ProductWrapper {...{ products }} />
+      <ProductWrapper {...{ products, isLoading }} />
     </>
   );
 };

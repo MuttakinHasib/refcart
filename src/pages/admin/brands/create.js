@@ -14,7 +14,7 @@ const CreateBrandScreen = () => {
     dispatch(
       attemptCreateBrand({
         ...data,
-        image: images.length ? Object.assign(...images) : undefined,
+        images,
       })
     );
   };

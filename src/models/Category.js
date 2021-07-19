@@ -19,12 +19,12 @@ const categorySchema = new mongoose.Schema(
         url: 'https://www.cricdiction.com/wp-content/uploads/2019/12/placeholder.png',
       },
     },
-    products: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-      },
-    ],
+    // products: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Product',
+    //   },
+    // ],
   },
   { timestamps: true }
 );

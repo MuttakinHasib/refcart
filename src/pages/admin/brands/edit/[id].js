@@ -1,32 +1,30 @@
 import { useState } from 'react';
 import { FileUploader, Button } from '@components/index';
 import SectionTitle from '@components/AdminPage/SectionTitle';
-import { useDispatch } from 'react-redux';
 import { BrandForm } from '@components/AdminPage';
-import { attemptCreateBrand } from '@features/brand/brandActions';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
-import { getBrandById } from '@utils/api';
+import { getBrandById, updateBrand } from '@utils/api';
+import { useMutation } from 'react-query';
+import { useQueryClient } from 'react-query';
 
-const EditBrandScreen = () => {
-  const dispatch = useDispatch();
+const BrandEditScreen = () => {
   const { query } = useRouter();
   const { id } = query;
-
   const [images, setPictures] = useState([]);
+
+  const client = useQueryClient();
+
   const { data: defaultValues, isLoading } = useQuery(
-    ['brand', { id }],
+    ['brands', { id }],
     getBrandById
   );
+  const { mutateAsync, isLoading: isMutating } = useMutation(updateBrand);
 
   // Handle Submit
-  const onFormSubmit = data => {
-    dispatch(
-      attemptCreateBrand({
-        ...data,
-        image: images.length ? Object.assign(...images) : undefined,
-      })
-    );
+  const onFormSubmit = async data => {
+    await mutateAsync({ ...{ ...data, images }, id });
+    await client.invalidateQueries('brands');
   };
 
   if (isLoading) return 'Loading...';
@@ -34,15 +32,15 @@ const EditBrandScreen = () => {
   return (
     <>
       <SectionTitle
-        title='Create brand'
-        subtitle='Add new brand in your shop'
-        right={<Button label='Publish' formId='add-brand' submit />}
+        title='Edit brand'
+        subtitle='Update brand in your shop'
+        right={<Button label='Update' formId='edit-brand' submit />}
       />
       <div className='grid lg:grid-cols-5 gap-10 my-10'>
         <div className='lg:col-span-3'>
           <div className='p-8 bg-white rounded'>
             <BrandForm
-              formId='add-brand'
+              formId='edit-brand'
               {...{ onFormSubmit, defaultValues }}
             />
           </div>
@@ -51,7 +49,8 @@ const EditBrandScreen = () => {
           <FileUploader
             title='Upload brand image'
             folderName='brands'
-            {...{ setPictures, defaultValues }}
+            defaultImages={defaultValues?.images}
+            {...{ setPictures }}
           />
         </div>
       </div>
@@ -59,4 +58,4 @@ const EditBrandScreen = () => {
   );
 };
 
-export default EditBrandScreen;
+export default BrandEditScreen;

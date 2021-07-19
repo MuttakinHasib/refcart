@@ -67,9 +67,15 @@ const BrandsScreen = () => {
                           process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
                         }
                         publicId={
-                          brand.image.public_id ? brand.image.public_id : null
+                          brand.images[brand.images.length - 1].public_id
+                            ? brand.images[brand.images.length - 1].public_id
+                            : null
                         }
-                        src={!brand.image.public_id ? brand.image.url : null}
+                        src={
+                          !brand.images[brand.images.length - 1].public_id
+                            ? brand.images[brand.images.length - 1].url
+                            : null
+                        }
                         alt=''
                         height={80}
                         crop='scale'

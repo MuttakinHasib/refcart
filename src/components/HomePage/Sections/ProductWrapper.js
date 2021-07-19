@@ -1,7 +1,11 @@
+import { Loader } from '@components/Shared';
 import ProductItem from '@components/Shared/ProductItem';
-// import { products } from '@configs/static';
 
-const ProductWrapper = ({ products }) => {
+const ProductWrapper = ({ products, isLoading }) => {
+  if (isLoading) {
+    return <Loader section />;
+  }
+
   return (
     <section className='container py-16'>
       <h2 className='text-3xl text-gray-800 font-medium mb-6 uppercase'>

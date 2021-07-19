@@ -108,6 +108,8 @@ const FileUploader = ({ title, folderName, setPictures, defaultImages }) => {
               <Image
                 cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                 publicId={image.public_id}
+                publicId={image.public_id ? image.public_id : null}
+                src={!image.public_id ? image.url : null}
                 height='150'
                 crop='scale'
               />

@@ -117,10 +117,11 @@ export const getBrandById = async ({ queryKey }) => {
 export const updateBrand = async ({ id, ...updateData }) => {
   try {
     const { data } = await axios.put(
-      `/api/product/brand/${id}`,
+      `/api/brand/update/${id}`,
       { ...updateData },
       config
     );
+    
     if (data.message) toast.success(data.message);
     return data;
   } catch (err) {

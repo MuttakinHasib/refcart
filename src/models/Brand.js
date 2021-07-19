@@ -12,19 +12,19 @@ const brandSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    image: {
-      type: Object,
+    images: {
+      type: Array,
       required: true,
       default: {
         url: 'https://www.cricdiction.com/wp-content/uploads/2019/12/placeholder.png',
       },
     },
-    products: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'product',
-      },
-    ],
+    // products: [
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'product',
+    //   },
+    // ],
   },
   { timestamps: true }
 );

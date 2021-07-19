@@ -36,7 +36,7 @@ const customStyles = {
 const BrandForm = ({ formId, onFormSubmit, defaultValues }) => {
   const { data: brands, isLoading } = useQuery('brands', getBrands);
 
-  const { handleSubmit, register } = useForm(defaultValues);
+  const { handleSubmit, register } = useForm({ defaultValues });
   const [brand, setBrand] = useState(null);
 
   useEffect(() => {
