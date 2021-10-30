@@ -2,12 +2,18 @@ import SectionTitle from '@components/AdminPage/SectionTitle';
 import { DashboardSkeleton, SectionTitleSkeleton } from '@components/Skeleton';
 import { getAllProducts, getAllUsers } from '@utils/api';
 import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 
 const DashboardScreen = () => {
+  const {
+    user: { token },
+  } = useSelector(state => state.auth);
+
   const { data: users, isLoading: isUsersLoading } = useQuery(
-    'users',
+    ['users', { token }],
     getAllUsers
   );
+  
   const { data: products, isLoading: isProductsLoading } = useQuery(
     'products',
     getAllProducts

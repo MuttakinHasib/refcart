@@ -1,3 +1,5 @@
+import { withAdmin } from '@middleware/withAdmin';
+import { withProtect } from '@middleware/withProtect';
 import User from '@models/User';
 import connectDB from '@utils/connectDB';
 
@@ -14,4 +16,4 @@ const handler = async (_req, res) => {
   }
 };
 
-export default handler;
+export default withProtect(withAdmin(handler));

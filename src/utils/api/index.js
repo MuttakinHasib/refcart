@@ -7,6 +7,8 @@ const config = {
   },
 };
 
+/*------------------------- Cloudinary Image ------------------------------*/
+
 /**
  * @param  {String} public_id
  */
@@ -24,6 +26,8 @@ export const removeImage = async public_id => {
     console.error(err.message);
   }
 };
+
+/*------------------------- Product Section ------------------------------*/
 
 export const getAllProducts = async () => {
   try {
@@ -68,7 +72,21 @@ export const updateProduct = async ({ id, ...updateData }) => {
   }
 };
 
-export const getAllUsers = async () => {
+/*------------------------- User Section ------------------------------*/
+
+/**
+ * @param  {Array} queryKey
+ * @description Get all user
+ */
+export const getAllUsers = async ({ queryKey }) => {
+  const [_key, { token }] = queryKey;
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
   try {
     const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/user`,
@@ -79,6 +97,8 @@ export const getAllUsers = async () => {
     throw new Error(err.message);
   }
 };
+
+/*------------------------- Brand Section ------------------------------*/
 
 export const getBrands = async () => {
   try {
@@ -143,6 +163,8 @@ export const createBrand = async brandData => {
     throw new Error(err.message);
   }
 };
+
+/*------------------------- Category Section ------------------------------*/
 
 export const getCategories = async () => {
   try {

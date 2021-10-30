@@ -18,9 +18,10 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     avatar: {
-      type: String,
-      default:
-        'https://res.cloudinary.com/muttakinhasib/image/upload/v1611336104/avatar/user_qcrqny.svg',
+      type: Object,
+      default: {
+        url: 'https://res.cloudinary.com/muttakinhasib/image/upload/v1611336104/avatar/user_qcrqny.svg',
+      },
     },
     gender: {
       type: String,
